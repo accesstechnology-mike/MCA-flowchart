@@ -1,0 +1,182 @@
+{
+  "startNodeId": "q1",
+  "nodes": {
+    "q1": {
+      "id": "q1",
+      "text": "Is the client over 16?",
+      "details": "For children under 16 years of age, parents or those with parental responsibility are legally responsible for making decisions on behalf of the child, and decisions and consent are generally made by adults that act in their best interests.\n\nIn some instances, a child under 16 may be considered Gillick competent and may therefore be able to make their own decisions, based on their level of understanding, maturity and their ability to fully understand, retain, weigh up and communicate the benefits, risks and potential consequences of the specific decision.",
+      "type": "question",
+      "options": [
+        { "label": "Yes", "nextNodeId": "q2" },
+        { "label": "No", "nextNodeId": "r-under-16" }
+      ]
+    },
+    "q2": {
+      "id": "q2",
+      "text": "Are there any concerns about the client’s ability to retain, weigh, use and communicate information to make their own decision?",
+      "details": "The presumption of capacity applies. This means that, in law, the client is assumed to have the ability to make their own decision unless it is established that they lack capacity.",
+      "type": "question",
+      "options": [
+        { "label": "Yes", "nextNodeId": "q3" },
+        { "label": "No", "nextNodeId": "r-capacity-presumed" }
+      ]
+    },
+    "q3": {
+      "id": "q3",
+      "text": "Has the client had an adequate programme of support to understand, retain, weigh and use the information relevant to the decision they need to make?",
+      "details": "The Mental Capacity Act (2005) states that a person is not to be treated as unable to make a decision unless all practicable steps to help them to do so have been taken without success.",
+      "type": "question",
+      "options": [
+        { "label": "Yes", "nextNodeId": "q4" },
+        { "label": "No", "nextNodeId": "r-support-needed" }
+      ]
+    },
+    "q4": {
+      "id": "q4",
+      "text": "Has the client undergone a formal capacity assessment?",
+      "details": "The Mental Capacity Act (2005) states that a person must be assumed to have capacity unless it is established that they lack capacity.",
+      "type": "question",
+      "options": [
+        { "label": "Yes", "nextNodeId": "q5" },
+        { "label": "No", "nextNodeId": "r-assessment-needed" }
+      ]
+    },
+    "q5": {
+      "id": "q5",
+      "text": "Was the client found to be lacking capacity to make the decision?",
+      "details": "The Mental Capacity Act (2005) states that a person must be assumed to have capacity unless it is established that they lack capacity.",
+      "type": "question",
+      "options": [
+        { "label": "Yes", "nextNodeId": "q6" },
+        { "label": "No", "nextNodeId": "r-capacity-confirmed" }
+      ]
+    },
+    "q6": {
+      "id": "q6",
+      "text": "Has a Best Interest Meeting been held?",
+      "details": "The Mental Capacity Act (2005) states that any act done or decision made on behalf of a person who lacks capacity must be in their best interests, or made in their best interests. In order to ensure that the decision is in the client’s best interests the views of all people involved in the client’s care should be sought.",
+      "type": "question",
+      "options": [
+        { "label": "Yes", "nextNodeId": "q7" },
+        { "label": "No", "nextNodeId": "r-hold-meeting" }
+      ]
+    },
+    "q7": {
+      "id": "q7",
+      "text": "Have the client’s views, wishes and preferences been explored and appropriately considered in relation to this decision?",
+      "details": "The Mental Capacity Act (2005) states that those making best interest decisions should permit and encourage the client to participate, or improve their ability to participate, as fully as possible in any act done for them and any decision affecting them.",
+      "type": "question",
+      "options": [
+        { "label": "Yes", "nextNodeId": "q8" },
+        { "label": "No", "nextNodeId": "r-seek-views" }
+      ]
+    },
+    "q8": {
+      "id": "q8",
+      "text": "As a result of the best interest decision, could the client be considered as under continuous supervision and control and unable to leave their home?",
+      "details": "This decision may amount to a Deprivation of Liberty and, if so, will require appropriate application to and authorisation from the Court of Protection.",
+      "type": "question",
+      "options": [
+        { "label": "Yes", "nextNodeId": "r-dol-warning" },
+        { "label": "No", "nextNodeId": "q9" }
+      ]
+    },
+    "q9": {
+      "id": "q9",
+      "text": "Is the support, restrictions or decisions made in the client’s best interest the least restrictive option?",
+      "details": "The Mental Capacity Act (2005) states that before best interests decisions are made, the decision maker must consider whether the purpose for which it is needed can be as effectively achieved in a way that is less restrictive of the client’s rights and freedom of action.",
+      "type": "question",
+      "options": [
+        { "label": "Yes", "nextNodeId": "q10" },
+        { "label": "No", "nextNodeId": "r-consider-alternatives" }
+      ]
+    },
+    "q10": {
+      "id": "q10",
+      "text": "Is the client expected to gain/regain capacity?",
+      "details": "In accordance with Section 4 of the Mental Capacity Act 2005, consideration must be given to whether the client may regain capacity and, if so, whether the decision can reasonably be delayed until such time that they are able to participate fully in the decision-making process.",
+      "type": "question",
+      "options": [
+        { "label": "Yes", "nextNodeId": "r-delay-decision" },
+        { "label": "No", "nextNodeId": "r-process-complete" }
+      ]
+    },
+    "r-under-16": {
+      "id": "r-under-16",
+      "text": "Outcome: Parental Responsibility",
+      "details": "For children under 16 years of age, parents or those with parental responsibility are legally responsible for making decisions on behalf of the child. However, consider if the child is Gillick competent.",
+      "type": "result",
+      "status": "incapacity"
+    },
+    "r-capacity-presumed": {
+      "id": "r-capacity-presumed",
+      "text": "Outcome: Capacity Assumed",
+      "details": "The presumption of capacity applies. The client is assumed to have the ability to make their own decision.",
+      "type": "result",
+      "status": "capacity"
+    },
+    "r-support-needed": {
+      "id": "r-support-needed",
+      "text": "Action Required: Provide Support",
+      "details": "This client requires a further programme of capacity building support to help them use and understand the information relevant to the decision they need to make.",
+      "type": "result",
+      "status": "incapacity"
+    },
+    "r-assessment-needed": {
+      "id": "r-assessment-needed",
+      "text": "Action Required: Formal Assessment",
+      "details": "This client requires a decision specific formal capacity assessment.",
+      "type": "result",
+      "status": "incapacity"
+    },
+    "r-capacity-confirmed": {
+      "id": "r-capacity-confirmed",
+      "text": "Outcome: Capacity Confirmed",
+      "details": "The client is assumed to have the ability to make their own decision.",
+      "type": "result",
+      "status": "capacity"
+    },
+    "r-hold-meeting": {
+      "id": "r-hold-meeting",
+      "text": "Action: Hold Best Interest Meeting",
+      "details": "In order to ensure that the decision is in the client’s best interests the views of all people involved in the client’s care should be sought. This should include the client’s family, professionals and legal deputy.",
+      "type": "result",
+      "status": "incapacity"
+    },
+    "r-seek-views": {
+      "id": "r-seek-views",
+      "text": "Action: Seek Client's Views",
+      "details": "The views of the client should be sought and adequately considered.",
+      "type": "result",
+      "status": "incapacity"
+    },
+    "r-dol-warning": {
+      "id": "r-dol-warning",
+      "text": "Outcome: Deprivation of Liberty",
+      "details": "This decision may amount to a Deprivation of Liberty and, if so, will require appropriate application to and authorisation from the Court of Protection.",
+      "type": "result",
+      "status": "incapacity"
+    },
+    "r-consider-alternatives": {
+      "id": "r-consider-alternatives",
+      "text": "Action: Consider Less Restrictive Options",
+      "details": "All possible alternatives should be actively considered. Where more restrictive options are being considered there should be clear evidence to support their need and justification should be well documented.",
+      "type": "result",
+      "status": "incapacity"
+    },
+    "r-delay-decision": {
+      "id": "r-delay-decision",
+      "text": "Action: Delay Decision & Reassess",
+      "details": "Prioritise the Client’s future ability to decide for themselves. Consider if the decision can be safely delayed until capacity returns. Avoid making permanent decisions unnecessarily. Consider reassessing capacity at an appropriate time",
+      "type": "result",
+      "status": "incapacity"
+    },
+    "r-process-complete": {
+      "id": "r-process-complete",
+      "text": "Process Complete",
+      "details": "The decision can be made in the client's best interests. Ensure all steps, including least restrictive options and views of the client, have been documented.",
+      "type": "result",
+      "status": "capacity"
+    }
+  }
+}
