@@ -106,7 +106,7 @@
     "q9": {
       "id": "q9",
       "text": "Is the proposed Best Interest decision/act the least restrictive option?",
-      "details": "Section 1 of the Mental Capacity Act (2005) requires that before the act is done, or the decision is made, regard must be had to whether the purpose for which it is needed can be as effectively achieved in a way that is less restrictive of the person's rights and freedom of action.\n\n<b>Ask yourself:</b>\n\n• Can the same outcome be achieved in a less restrictive way?\n• Is the intervention proportionate to the risk?\n• Have all practical alternatives been explored and ruled out?\n• Does this option interfere with the client's rights and freedoms as little as possible?",
+      "details": "<b>Ask yourself:</b>\n\n• Can the same outcome be achieved in a less restrictive way?\n• Is the intervention proportionate to the risk?\n• Have all practical alternatives been explored and ruled out?\n• Does this option interfere with the client's rights and freedoms as little as possible?",
       "type": "question",
       "options": [
         { "label": "Yes", "nextNodeId": "q-review-date" },
