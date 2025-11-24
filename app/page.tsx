@@ -18,54 +18,44 @@ export default function DecisionTree() {
   const [history, setHistory] = useState<string[]>([]);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Initialize from URL on mount
+  // Initialize from history state on mount
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
-    const params = new URLSearchParams(window.location.search);
-    const urlNodeId = params.get('node');
-    const urlHistory = params.get('history');
-    const urlWelcome = params.get('welcome');
+    // Check if there's existing state in history
+    const existingState = window.history.state;
     
-    if (urlNodeId) {
-      setCurrentNodeId(urlNodeId);
-      setShowWelcome(false);
-    }
-    if (urlHistory) {
-      setHistory(urlHistory.split(',').filter(Boolean));
-    }
-    if (urlWelcome === 'false') {
-      setShowWelcome(false);
+    if (existingState && existingState.node) {
+      // Restore from history state
+      setCurrentNodeId(existingState.node);
+      if (existingState.history) {
+        setHistory(existingState.history);
+      }
+      if (existingState.showWelcome !== undefined) {
+        setShowWelcome(existingState.showWelcome);
+      } else {
+        setShowWelcome(false);
+      }
+    } else {
+      // Initialize with default state
+      const initialState = {
+        node: data.startNodeId,
+        history: [],
+        showWelcome: true,
+      };
+      window.history.replaceState(initialState, '', window.location.pathname);
     }
     
-    // Set initial history state
-    const initialState = {
-      node: urlNodeId || data.startNodeId,
-      history: urlHistory ? urlHistory.split(',').filter(Boolean) : [],
-      showWelcome: urlWelcome !== 'false' && !urlNodeId,
-    };
-    
-    window.history.replaceState(initialState, '', window.location.href);
     setIsInitialized(true);
   }, [data.startNodeId]);
 
-  // Update URL when state changes (but not on initial mount)
+  // Update history state when navigation changes (but not on initial mount)
   useEffect(() => {
     if (!isInitialized || typeof window === 'undefined') return;
     
-    const params = new URLSearchParams();
-    if (!showWelcome) {
-      params.set('node', currentNodeId);
-      if (history.length > 0) {
-        params.set('history', history.join(','));
-      }
-    } else {
-      params.set('welcome', 'true');
-    }
-    
-    const newUrl = `${window.location.pathname}?${params.toString()}`;
     const state = { node: currentNodeId, history, showWelcome };
-    window.history.pushState(state, '', newUrl);
+    // Use clean URL without query parameters
+    window.history.pushState(state, '', window.location.pathname);
   }, [currentNodeId, history, showWelcome, isInitialized]);
 
   // Handle browser back/forward navigation
@@ -79,22 +69,16 @@ export default function DecisionTree() {
         if (hist) setHistory(hist);
         if (welcome !== undefined) setShowWelcome(welcome);
       } else {
-        // Fallback: parse from URL
-        const params = new URLSearchParams(window.location.search);
-        const node = params.get('node');
-        const hist = params.get('history');
-        const welcome = params.get('welcome');
-        
-        if (node) setCurrentNodeId(node);
-        if (hist) setHistory(hist.split(',').filter(Boolean));
-        if (welcome === 'false') setShowWelcome(false);
-        else if (!node) setShowWelcome(true);
+        // No state found, reset to initial state
+        setCurrentNodeId(data.startNodeId);
+        setHistory([]);
+        setShowWelcome(true);
       }
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+  }, [data.startNodeId]);
 
   const handleOptionClick = (nextNodeId: string) => {
     const newHistory = [...history, currentNodeId];
@@ -103,17 +87,8 @@ export default function DecisionTree() {
   };
 
   const handleBack = () => {
-    if (history.length === 0) {
-      // If no history, go back to welcome screen
-      setShowWelcome(true);
-      setHistory([]);
-      setCurrentNodeId(data.startNodeId);
-      return;
-    }
-    const newHistory = [...history];
-    const prevNodeId = newHistory.pop();
-    setHistory(newHistory);
-    if (prevNodeId) setCurrentNodeId(prevNodeId);
+    // Always use browser's back button - it will go back through history including welcome page
+    window.history.back();
   };
 
   const handleRestart = () => {
@@ -123,7 +98,16 @@ export default function DecisionTree() {
   };
 
   const handleStartAssessment = () => {
+    // Push a new history entry when starting assessment so back button can return to welcome
+    const assessmentState = {
+      node: data.startNodeId,
+      history: [],
+      showWelcome: false,
+    };
+    window.history.pushState(assessmentState, '', window.location.pathname);
     setShowWelcome(false);
+    setHistory([]);
+    setCurrentNodeId(data.startNodeId);
   };
 
   // Show welcome screen first

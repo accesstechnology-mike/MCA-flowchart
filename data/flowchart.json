@@ -35,8 +35,17 @@
       "details": "An adequate programme of support includes:\n\n• Information presented in an accessible and understandable format\n• Consideration of the individual's literacy level and comprehension\n• Adaptation to the person's communication style and preferred methods\n• Support for memory difficulties, including repetition and reinforcement\n• Alignment with the individual's learning style and processing abilities\n• Opportunities for information to be revisited over time\n• Consistency of approach across professionals and environments\n• Sufficient time for the individual to process and respond",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q4" },
+        { "label": "Yes", "nextNodeId": "q3b" },
         { "label": "No", "nextNodeId": "r-support-needed" }
+      ]
+    },
+    "q3b": {
+      "id": "q3b",
+      "text": "Is there clear evidence that the client is unable to retain, use, weigh, or communicate relevant information due to an impairment or disturbance of the mind or brain, rather than simply making an unwise decision?",
+      "type": "question",
+      "options": [
+        { "label": "Yes", "nextNodeId": "q4" },
+        { "label": "No", "nextNodeId": "r-unwise-decision" }
       ]
     },
     "q4": {
@@ -199,6 +208,13 @@
       "id": "r-process-complete",
       "text": "Process Complete",
       "details": "The Mental Capacity Act Code of Practice makes clear that individuals involved in the client's care and welfare should continue to remain alert to any changes in the client's presentation, circumstances, capacity or needs, and ensure that decision-making continues to reflect current best interests.",
+      "type": "result",
+      "status": "capacity"
+    },
+    "r-unwise-decision": {
+      "id": "r-unwise-decision",
+      "text": "Outcome: Unwise Decision",
+      "details": "Section 1 of the Mental Capacity Act (2005) states that a person is not to be treated as unable to make a decision merely because he makes an unwise decision. Individuals have the right to make decisions that others may view as risky, illogical, or poor.\n\nProfessionals must not assume lack of capacity simply because they disagree with the decision or believe it is unwise. Undertake a body of work to look for evidence to support your judgement. It may be helpful to consider:\n\n• If other people with capacity make similar decisions\n• Frequency and pattern of the decision/ behaviour over time\n• Consistency with the clients’s past values and usual choices\n• Client's ability to explain their reasoning, even if controversial\n• Evidence that risks and consequences are understood\n• If greater support or time improves decision-making\n• Presence of insight into potential outcomes\n• If behaviour is context-specific or widespread",
       "type": "result",
       "status": "capacity"
     }
