@@ -107,8 +107,8 @@
       "text": "Is the client expected to gain/regain capacity?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "r-delay-decision" },
-        { "label": "No", "nextNodeId": "q7" }
+        { "label": "It's possible", "nextNodeId": "r-delay-decision" },
+        { "label": "It's unlikely", "nextNodeId": "q7" }
       ]
     },
     "q-review-date": {
@@ -164,15 +164,15 @@
     },
     "r-delay-decision": {
       "id": "r-delay-decision",
-      "text": "Action: Delay Decision & Reassess",
-      "details": "In accordance with Section 4 of the Mental Capacity Act (2005), consideration must be given to whether the client may regain capacity and, if so, whether the decision can reasonably be delayed until such time that they are able to participate fully in the decision-making process.\n\n<b>Prioritise the client's future ability to decide for themselves. Consider if the decision can be safely delayed until capacity returns. Avoid making permanent decisions unnecessarily. Consider reassessing capacity at an appropriate time.</b>",
+      "text": "Action: Consider if it's possible to delay the decision",
+      "details": "In accordance with Section 4 of the Mental Capacity Act (2005), consideration must be given to whether the client may regain capacity and, if so, whether the decision can reasonably be delayed until such time that they are able to participate fully in the decision-making process.\n\n<b>Prioritise the client's future ability to decide for themselves.\n\nConsider if the decision can be safely delayed until capacity returns.\n\nAvoid making permanent decisions unnecessarily.\n\nConsider reassessing capacity at an appropriate time.</b>",
       "type": "result",
       "status": "incapacity"
     },
     "r-hold-meeting": {
       "id": "r-hold-meeting",
       "text": "Action: Hold Best Interest Meeting",
-      "details": "Section 1 of the Mental Capacity Act (2005) states that any act or decision made on behalf of a person who lacks capacity must be done, or made, in their best interests.\n\n<b>In order to ascertain the most appropriate next steps, a best interest meeting should be held, to include the views of all people concerned with the client's care and welfare including professionals and legal deputy.</b>",
+      "details": "Section 1 of the Mental Capacity Act (2005) states that any act or decision made on behalf of a person who lacks capacity must be done, or made, in their best interests.\n\n<b>In order to ascertain the most appropriate next steps, a best interest meeting should be held, to include the views of all people concerned with the client's care and welfare including family, professionals and deputy (property and affairs).</b>",
       "type": "result",
       "status": "incapacity"
     },

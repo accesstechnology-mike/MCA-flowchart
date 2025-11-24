@@ -330,18 +330,34 @@ export default function DecisionTree() {
 
           {/* Actions */}
           <div className="grid gap-4 pt-8 mt-auto">
-            {currentNode.options?.map((option, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleOptionClick(option.nextNodeId)}
-                className="w-full text-left px-6 py-4 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 font-medium text-lg flex items-center justify-between group"
-              >
-                {option.label}
-                <span className="opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-200">
-                  →
-                </span>
-              </button>
-            ))}
+            {currentNode.options?.map((option, idx) => {
+              const isYes = option.label === 'Yes';
+              const isNo = option.label === 'No';
+              
+              return (
+                <button
+                  key={idx}
+                  onClick={() => handleOptionClick(option.nextNodeId)}
+                  className={cn(
+                    "w-full text-left px-6 py-4 rounded-xl border-2 transition-all duration-200 font-medium text-lg flex items-center justify-between group",
+                    isYes 
+                      ? "border-slate-200 hover:border-green-500 hover:bg-green-50 hover:text-green-700" 
+                      : isNo 
+                        ? "border-slate-200 hover:border-red-500 hover:bg-red-50 hover:text-red-700"
+                        : "border-slate-200 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700"
+                  )}
+                >
+                  <span className="flex items-center gap-3">
+                    {isYes && <CheckCircle className={cn("w-6 h-6", isYes ? "text-green-600 group-hover:text-green-700" : "")} />}
+                    {isNo && <XCircle className={cn("w-6 h-6", isNo ? "text-red-600 group-hover:text-red-700" : "")} />}
+                    {option.label}
+                  </span>
+                  <span className="opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-200">
+                    →
+                  </span>
+                </button>
+              );
+            })}
 
             {isResult && (
               <button
