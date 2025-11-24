@@ -4,6 +4,7 @@
     "q1": {
       "id": "q1",
       "text": "Is the client over 16?",
+      "details": "The Mental Capacity Act applies to individuals aged 16 and over.",
       "type": "question",
       "options": [
         { "label": "Yes", "nextNodeId": "q2" },
@@ -31,6 +32,7 @@
     "q3": {
       "id": "q3",
       "text": "Has the client had an adequate programme of support to understand, retain, weigh and use the information relevant to the decision they need to make?",
+      "details": "An adequate programme of support includes:\n\n• Information presented in an accessible and understandable format\n• Consideration of the individual's literacy level and comprehension\n• Adaptation to the person's communication style and preferred methods\n• Support for memory difficulties, including repetition and reinforcement\n• Alignment with the individual's learning style and processing abilities\n• Opportunities for information to be revisited over time\n• Consistency of approach across professionals and environments\n• Sufficient time for the individual to process and respond",
       "type": "question",
       "options": [
         { "label": "Yes", "nextNodeId": "q4" },

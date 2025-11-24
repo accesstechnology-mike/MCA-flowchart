@@ -160,7 +160,7 @@ export default function DecisionTree() {
                 
                 <div className="prose prose-lg text-slate-600 leading-relaxed">
                   <p>
-                    This decision-making tool has been developed to support professionals in applying the core principles of the Mental Capacity Act (MCA) within everyday practice. It provides a structured framework to guide reflective, lawful, and ethically robust decision-making.
+                    This decision-making tool has been developed to support professionals in applying the core principles of the Mental Capacity Act (MCA) within everyday practice. It provides a structured framework to guide reflective, lawful, and ethically robust decision-making. This tool is designed to be applied on a client and decision specific basis.
                   </p>
                 </div>
 
