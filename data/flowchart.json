@@ -224,8 +224,8 @@
     },
     "r-process-complete": {
       "id": "r-process-complete",
-      "text": "Process Complete",
-      "details": "The Mental Capacity Act Code of Practice makes clear that individuals involved in the client's care and welfare should continue to remain alert to any changes in the client's presentation, circumstances, capacity or needs, and ensure that decision-making continues to reflect current best interests.",
+      "text": "Remain Vigilant",
+      "details": "The MCA requires that capacity is decision and time specific, meaning it should be reassessed whenever circumstances indicate it may have changed.\n\n<b>Action: Continue to remain alert to any changes.</b>\n\nCapacity assessments should be repeated if:\n\n• The person's presentation, cognition, mental state, or communication has changed\n• There is evidence of fluctuation\n• A significant amount of time has passed\n• Consequences or risks associated with the decision have changed\n• There is disagreement or challenge around the assessment\n• Initial assessment was completed during an acute or unstable period",
       "type": "result",
       "status": "capacity"
     },

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { FlowchartData, Node } from '@/types';
 import flowchartData from '@/data/flowchart.json';
-import { ArrowLeft, RotateCcw, CheckCircle, XCircle, AlertCircle, Calendar, Download, Info, AlertTriangle, ShieldAlert, ArrowRight, HelpCircle } from 'lucide-react';
+import { ArrowLeft, RotateCcw, CheckCircle, XCircle, AlertCircle, Calendar, Download, Info, AlertTriangle, ShieldAlert, ArrowRight, HelpCircle, Star } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -283,6 +283,8 @@ export default function DecisionTree() {
                {isResult ? (
                   currentNode.id === 'r-schedule-review' ? (
                     <Calendar className="text-red-500 shrink-0" size={32} />
+                  ) : currentNode.id === 'r-process-complete' ? (
+                    <Star className="text-amber-500 fill-amber-500 shrink-0" size={32} />
                   ) : isCapacity ? (
                     <CheckCircle className="text-green-500 shrink-0" size={32} />
                   ) : (
@@ -303,7 +305,7 @@ export default function DecisionTree() {
                <div className="space-y-2">
                   <h2 className={cn(
                     "text-2xl font-semibold leading-tight",
-                    isResult ? (isCapacity ? "text-green-700" : "text-red-700") : "text-slate-800"
+                    isResult ? (currentNode.id === 'r-process-complete' ? "text-amber-500" : isCapacity ? "text-green-700" : "text-red-700") : "text-slate-800"
                   )}>
                     {currentNode.text}
                   </h2>
@@ -318,10 +320,10 @@ export default function DecisionTree() {
                            <span>Guidance</span>
                         </div>
                       )}
-                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' ? (
+                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' || currentNode.id === 'r-process-complete' ? (
                         <>
                           {currentNode.details.split('\n\n').filter((para, idx) => {
-                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision') {
+                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete') {
                               const paraText = para.trim();
                               return !paraText.includes('•') && paraText.length > 0;
                             } else {
@@ -332,7 +334,7 @@ export default function DecisionTree() {
                              para.trim() && <p key={idx} dangerouslySetInnerHTML={{ __html: para }} />
                           ))}
                           
-                          {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision') && currentNode.details.includes('<b>') && (
+                          {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete') && currentNode.details.includes('<b>') && (
                              (() => {
                                const boldBlock = currentNode.details.split('\n\n').find(p => p.includes('<b>') && p.includes('•'));
                                if (boldBlock) {
@@ -340,6 +342,23 @@ export default function DecisionTree() {
                                  if (introMatch) {
                                     return <p className="font-bold mb-2">{introMatch[1].replace(/<\/?b>/g, '').trim()}:</p>;
                                  }
+                               }
+                               // Fallback for r-process-complete which might not have bullet point immediately after bold or different structure
+                               if (currentNode.id === 'r-process-complete') {
+                                    // We already rendered the intro text above (it doesn't have bullets)
+                                    // We need to find the bullet list part.
+                                    // Wait, the filter above removed anything with '•'.
+                                    // So we just need to render the bullets below.
+                                    // But we also need to render "Action: Continue to remain alert to any changes." which is bold but not part of bullets?
+                                    // The structure is:
+                                    // Text
+                                    // <b>Action...</b>
+                                    // Text (Capacity assessments...)
+                                    // • Bullets
+                                    
+                                    // My previous logic for 'r-consider-alternatives' assumes bold text is a header for bullets.
+                                    // Let's check formatting.
+                                    return null;
                                }
                                return null;
                              })()
