@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FlowchartData, Node } from '@/types';
 import flowchartData from '@/data/flowchart.json';
-import { ArrowLeft, RotateCcw, CheckCircle, XCircle, AlertCircle, Calendar, Download, ExternalLink, Info, AlertTriangle, ShieldAlert } from 'lucide-react';
+import { ArrowLeft, RotateCcw, CheckCircle, XCircle, AlertCircle, Calendar, Download, Info, AlertTriangle, ShieldAlert } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -16,14 +16,100 @@ export default function DecisionTree() {
   const [showWelcome, setShowWelcome] = useState<boolean>(true);
   const [currentNodeId, setCurrentNodeId] = useState<string>(data.startNodeId);
   const [history, setHistory] = useState<string[]>([]);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Initialize from URL on mount
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const params = new URLSearchParams(window.location.search);
+    const urlNodeId = params.get('node');
+    const urlHistory = params.get('history');
+    const urlWelcome = params.get('welcome');
+    
+    if (urlNodeId) {
+      setCurrentNodeId(urlNodeId);
+      setShowWelcome(false);
+    }
+    if (urlHistory) {
+      setHistory(urlHistory.split(',').filter(Boolean));
+    }
+    if (urlWelcome === 'false') {
+      setShowWelcome(false);
+    }
+    
+    // Set initial history state
+    const initialState = {
+      node: urlNodeId || data.startNodeId,
+      history: urlHistory ? urlHistory.split(',').filter(Boolean) : [],
+      showWelcome: urlWelcome !== 'false' && !urlNodeId,
+    };
+    
+    window.history.replaceState(initialState, '', window.location.href);
+    setIsInitialized(true);
+  }, [data.startNodeId]);
+
+  // Update URL when state changes (but not on initial mount)
+  useEffect(() => {
+    if (!isInitialized || typeof window === 'undefined') return;
+    
+    const params = new URLSearchParams();
+    if (!showWelcome) {
+      params.set('node', currentNodeId);
+      if (history.length > 0) {
+        params.set('history', history.join(','));
+      }
+    } else {
+      params.set('welcome', 'true');
+    }
+    
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    const state = { node: currentNodeId, history, showWelcome };
+    window.history.pushState(state, '', newUrl);
+  }, [currentNodeId, history, showWelcome, isInitialized]);
+
+  // Handle browser back/forward navigation
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const handlePopState = (event: PopStateEvent) => {
+      if (event.state) {
+        const { node, history: hist, showWelcome: welcome } = event.state;
+        if (node) setCurrentNodeId(node);
+        if (hist) setHistory(hist);
+        if (welcome !== undefined) setShowWelcome(welcome);
+      } else {
+        // Fallback: parse from URL
+        const params = new URLSearchParams(window.location.search);
+        const node = params.get('node');
+        const hist = params.get('history');
+        const welcome = params.get('welcome');
+        
+        if (node) setCurrentNodeId(node);
+        if (hist) setHistory(hist.split(',').filter(Boolean));
+        if (welcome === 'false') setShowWelcome(false);
+        else if (!node) setShowWelcome(true);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   const handleOptionClick = (nextNodeId: string) => {
-    setHistory((prev) => [...prev, currentNodeId]);
+    const newHistory = [...history, currentNodeId];
+    setHistory(newHistory);
     setCurrentNodeId(nextNodeId);
   };
 
   const handleBack = () => {
-    if (history.length === 0) return;
+    if (history.length === 0) {
+      // If no history, go back to welcome screen
+      setShowWelcome(true);
+      setHistory([]);
+      setCurrentNodeId(data.startNodeId);
+      return;
+    }
     const newHistory = [...history];
     const prevNodeId = newHistory.pop();
     setHistory(newHistory);
@@ -33,6 +119,7 @@ export default function DecisionTree() {
   const handleRestart = () => {
     setHistory([]);
     setCurrentNodeId(data.startNodeId);
+    setShowWelcome(true);
   };
 
   const handleStartAssessment = () => {
@@ -99,16 +186,33 @@ export default function DecisionTree() {
                 onClick={handleStartAssessment}
                 className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors font-medium text-lg"
               >
-                Continue to Assessment
+                Begin Assessment
                 <span className="ml-2">→</span>
               </button>
             </div>
           </div>
 
           {/* Footer */}
-          <div className="bg-slate-50 px-6 py-4 border-t border-slate-100 text-center text-sm text-slate-500">
-            <div className="font-medium text-slate-700">
+          <div className="bg-slate-50 px-6 py-4 border-t border-slate-100 flex md:grid md:grid-cols-3 justify-between md:justify-normal items-center gap-4 text-sm text-slate-500">
+            <div className="md:justify-self-start">
+            </div>
+            
+            <div className="justify-self-center font-medium text-slate-700 order-first md:order-none">
               Mental Capacity Act (2005)
+            </div>
+
+            <div className="flex items-center gap-4 md:justify-self-end">
+              <a 
+                href="/MCA%20Decision%20Making%20Pathway.pdf"
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:text-slate-800 transition-colors"
+                title="Download PDF Version"
+              >
+                <Download size={14} />
+                <span className="hidden sm:inline">PDF</span>
+              </a>
             </div>
           </div>
         </div>
@@ -155,7 +259,7 @@ export default function DecisionTree() {
             </h1>
           </div>
           <div className="flex items-center gap-2 md:gap-4 shrink-0">
-            {history.length > 0 && (
+            {!showWelcome && (
               <>
                 <button 
                   onClick={handleBack}
@@ -261,17 +365,6 @@ export default function DecisionTree() {
             >
               <Download size={14} />
               <span className="hidden sm:inline">PDF</span>
-            </a>
-            <span className="w-px h-3 bg-slate-300 hidden sm:block"></span>
-            <a 
-              href="https://miro.com/app/board/uXjVJp0nMIE=/?share_link_id=685157992485"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 hover:text-slate-800 transition-colors"
-              title="View Online Mindmap"
-            >
-              <ExternalLink size={14} />
-              <span className="hidden sm:inline">Miro Board</span>
             </a>
           </div>
         </div>
