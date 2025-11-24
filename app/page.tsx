@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { FlowchartData, Node } from '@/types';
 import flowchartData from '@/data/flowchart.json';
-import { ArrowLeft, RotateCcw, CheckCircle, XCircle, AlertCircle, Calendar, Download, ExternalLink } from 'lucide-react';
+import { ArrowLeft, RotateCcw, CheckCircle, XCircle, AlertCircle, Calendar, Download, ExternalLink, Info, AlertTriangle, ShieldAlert } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -13,6 +13,7 @@ function cn(...inputs: ClassValue[]) {
 
 export default function DecisionTree() {
   const data = flowchartData as FlowchartData;
+  const [showWelcome, setShowWelcome] = useState<boolean>(true);
   const [currentNodeId, setCurrentNodeId] = useState<string>(data.startNodeId);
   const [history, setHistory] = useState<string[]>([]);
 
@@ -33,6 +34,87 @@ export default function DecisionTree() {
     setHistory([]);
     setCurrentNodeId(data.startNodeId);
   };
+
+  const handleStartAssessment = () => {
+    setShowWelcome(false);
+  };
+
+  // Show welcome screen first
+  if (showWelcome) {
+    return (
+      <main className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 font-sans">
+        <div className="max-w-2xl w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+          
+          {/* Header */}
+          <div className="bg-slate-900 px-4 md:px-6 py-3 md:py-4 flex items-center gap-2 md:gap-3">
+            <img 
+              src="/android-chrome-192x192.png" 
+              alt="access: technology logo" 
+              className="h-6 w-6 md:h-8 md:w-8 object-contain shrink-0"
+            />
+            <h1 className="text-base md:text-xl font-bold text-white tracking-wide">
+              access: technology <span className="font-normal text-slate-400 text-xs md:text-sm ml-1 md:ml-2 hidden sm:inline">MCA Decision Making Pathway</span>
+            </h1>
+          </div>
+
+          {/* Welcome Content */}
+          <div className="p-8 md:p-10 space-y-6">
+            <div className="flex items-start gap-4">
+              <Info className="text-blue-500 shrink-0 mt-1" size={32} />
+              <div className="space-y-4">
+                <h2 className="text-2xl font-semibold text-slate-800 leading-tight">
+                  Welcome to the MCA Decision Making Pathway
+                </h2>
+                <div className="text-slate-600 leading-relaxed text-lg space-y-4">
+                  <p>
+                    This decision-making tool has been developed to support professionals in applying the core principles of the Mental Capacity Act (MCA) within everyday practice. It provides a structured framework to guide reflective, lawful, and ethically robust decision-making.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 pt-4 border-t border-slate-200">
+              <AlertTriangle className="text-amber-500 shrink-0 mt-1" size={32} />
+              <div className="text-slate-600 leading-relaxed text-lg space-y-4">
+                <p>
+                  This tool is intended to complement, not replace, professional judgement. It must not be used as a substitute for legal advice or formal legal procedures. Where there is uncertainty, complexity, or potential disagreement in relation to matters involving the MCA, professionals should seek independent legal advice to ensure that decisions remain fully compliant with current legislation and relevant case law.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 pt-4 border-t border-slate-200">
+              <ShieldAlert className="text-red-600 shrink-0 mt-1" size={32} />
+              <div className="flex-1">
+                <div className="bg-red-50 rounded-lg p-4 border-l-4 border-red-600">
+                  <p className="text-slate-700 leading-relaxed text-lg font-medium">
+                    Any concerns regarding risk of harm, abuse, neglect, or exploitation must be acted upon immediately and managed in accordance with relevant safeguarding legislation, statutory guidance, and local safeguarding procedures, including escalation through the appropriate safeguarding authorities where required.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Start Button */}
+            <div className="pt-6">
+              <button
+                onClick={handleStartAssessment}
+                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors font-medium text-lg"
+              >
+                Continue to Assessment
+                <span className="ml-2">→</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="bg-slate-50 px-6 py-4 border-t border-slate-100 text-center text-sm text-slate-500">
+            <div className="font-medium text-slate-700">
+              Mental Capacity Act (2005)
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   const currentNode = data.nodes[currentNodeId];
 
@@ -68,8 +150,8 @@ export default function DecisionTree() {
               alt="access: technology logo" 
               className="h-6 w-6 md:h-8 md:w-8 object-contain shrink-0"
             />
-            <h1 className="text-base md:text-xl font-bold text-white tracking-wide truncate">
-              access: technology <span className="font-normal text-slate-400 text-xs md:text-sm ml-1 md:ml-2 hidden sm:inline">MCA Assessment Tool</span>
+            <h1 className="text-base md:text-xl font-bold text-white tracking-wide">
+              access: technology <span className="font-normal text-slate-400 text-xs md:text-sm ml-1 md:ml-2 hidden sm:inline">MCA Decision Making Pathway</span>
             </h1>
           </div>
           <div className="flex items-center gap-2 md:gap-4 shrink-0">
