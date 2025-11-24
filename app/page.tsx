@@ -225,6 +225,18 @@ export default function DecisionTree() {
   const isResult = currentNode.type === 'result';
   const isCapacity = currentNode.status === 'capacity';
 
+  const lackingCapacityNodes = [
+    'q10', 'r-delay-decision', 'q7', 'r-seek-views', 
+    'q6', 'r-hold-meeting', 'q8', 'r-dol-warning', 
+    'q8b', 'r-consider-alternatives', 'q9', 'r-least-restrictive-needed', 
+    'q-review-date', 'r-schedule-review', 'r-process-complete'
+  ];
+
+  const hiddenStatusNodes = ['q1', 'q-safeguarding', 'r-under-16', 'r-safeguarding'];
+  
+  const isLackingCapacity = lackingCapacityNodes.includes(currentNodeId);
+  const shouldShowStatus = !hiddenStatusNodes.includes(currentNodeId);
+
   return (
     <main className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 font-sans">
       <div className="max-w-2xl w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
@@ -404,6 +416,28 @@ export default function DecisionTree() {
           </div>
 
         </div>
+
+        {/* Capacity Status Indicator */}
+        {shouldShowStatus && (
+          <div className={cn(
+            "w-full px-6 py-2 text-sm font-medium flex items-center justify-center gap-2 transition-colors duration-300 border-t",
+            isLackingCapacity 
+              ? "bg-red-50 text-red-800 border-red-200" 
+              : "bg-green-50 text-green-700 border-green-100"
+          )}>
+            {isLackingCapacity ? (
+              <>
+                <AlertCircle size={16} />
+                <span>Current Status: Client Lacks Capacity (Best Interests Framework)</span>
+              </>
+            ) : (
+               <>
+                <Info size={16} />
+                <span>Current Status: Presumption of Capacity Applies</span>
+              </>
+            )}
+          </div>
+        )}
 
         {/* Progress / Footer */}
         <div className="bg-slate-50 px-6 py-4 border-t border-slate-100 flex md:grid md:grid-cols-3 justify-between md:justify-normal items-center gap-4 text-sm text-slate-500">
