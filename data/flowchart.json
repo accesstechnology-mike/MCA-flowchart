@@ -213,10 +213,10 @@
     },
     "r-unwise-decision": {
       "id": "r-unwise-decision",
-      "text": "Outcome: Unwise Decision",
-      "details": "Section 1 of the Mental Capacity Act (2005) states that a person is not to be treated as unable to make a decision merely because he makes an unwise decision. Individuals have the right to make decisions that others may view as risky, illogical, or poor.\n\nProfessionals must not assume lack of capacity simply because they disagree with the decision or believe it is unwise. Undertake a body of work to look for evidence to support your judgement. It may be helpful to consider:\n\n• If other people with capacity make similar decisions\n• Frequency and pattern of the decision/ behaviour over time\n• Consistency with the clients’s past values and usual choices\n• Client's ability to explain their reasoning, even if controversial\n• Evidence that risks and consequences are understood\n• If greater support or time improves decision-making\n• Presence of insight into potential outcomes\n• If behaviour is context-specific or widespread",
+      "text": "Action: Evidence Gathering to Formulate Your Judgement",
+      "details": "Section 1 of the Mental Capacity Act (2005) states that a person is not to be treated as unable to make a decision merely because they make an unwise decision.\n\nIndividuals have the right to make decisions that others may view as risky, illogical, or poor.\n\nProfessionals must not assume lack of capacity simply because they disagree with the decision or believe it is unwise.\n\n<b>Undertake a body of work to gather evidence to formulate your judgement.</b>\n\nIt may be helpful to consider:\n\n• If other people with capacity make similar decisions\n\n• Frequency and pattern of the decision/ behaviour over time\n\n• Consistency with the clients's past values and usual choices\n\n• Client's ability to explain their reasoning, even if controversial\n\n• Evidence that risks and consequences are understood\n\n• If greater support or time improves decision-making\n\n• Presence of insight into potential outcomes\n\n• If behaviour is context-specific or widespread",
       "type": "result",
-      "status": "capacity"
+      "status": "incapacity"
     }
   }
 }

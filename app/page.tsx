@@ -291,13 +291,22 @@ export default function DecisionTree() {
                   </h2>
                   {currentNode.details && (
                     <div className="text-slate-600 leading-relaxed text-lg space-y-4">
-                      {currentNode.id === 'q3' ? (
+                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' ? (
                         <>
-                          {currentNode.details.split('\n\n')[0] && (
-                            <p>{currentNode.details.split('\n\n')[0]}</p>
-                          )}
+                          {currentNode.details.split('\n\n').filter((para, idx) => {
+                            // For q3, show first paragraph before bullets
+                            if (currentNode.id === 'q3') {
+                              return idx === 0;
+                            } else {
+                              // For r-unwise-decision, show all paragraphs that don't start with bullets
+                              const paraText = para.trim();
+                              return !paraText.startsWith('•') && paraText.length > 0;
+                            }
+                          }).map((para, idx) => (
+                            para.trim() && <p key={idx} dangerouslySetInnerHTML={{ __html: para }} />
+                          ))}
                           <div className="space-y-3">
-                            {currentNode.details.split('\n\n')[1]?.split('\n').filter(line => line.trim().startsWith('•')).map((line, index) => {
+                            {currentNode.details.split('\n').filter(line => line.trim().startsWith('•')).map((line, index) => {
                               const text = line.replace(/^•\s*/, '').trim();
                               return (
                                 <div key={index} className="flex items-start gap-3">
