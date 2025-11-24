@@ -86,7 +86,7 @@
     },
     "q8": {
       "id": "q8",
-      "text": "As a result of the best interest decision, could the client be considered to be under continuous supervision and control and unable to freely leave their home?",
+      "text": "Could the proposed Best Interest decision/act result in the client being under continuous supervision and control and unable to freely leave their home?",
       "type": "question",
       "options": [
         { "label": "Yes", "nextNodeId": "r-dol-warning" },
@@ -172,7 +172,7 @@
     "r-hold-meeting": {
       "id": "r-hold-meeting",
       "text": "Action: Hold Best Interest Meeting",
-      "details": "Section 1 of the Mental Capacity Act (2005) states that any act or decision made on behalf of a person who lacks capacity must be done, or made, in their best interests.\n\n<b>In order to ascertain the most appropriate next steps, a best interest meeting should be held, to include the views of all people concerned with the client's care and welfare including family, professionals and deputy (property and affairs).</b>",
+      "details": "Section 1 of the Mental Capacity Act (2005) states that any act or decision made on behalf of a person who lacks capacity must be done, or made, in their best interests.\n\n<b>In order to ascertain the most appropriate next steps, a Best Interest Meeting should be held, to include the views of all people concerned with the client's care and welfare including family, professionals and deputy (property and affairs).</b>",
       "type": "result",
       "status": "incapacity"
     },
