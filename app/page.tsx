@@ -210,7 +210,7 @@ export default function DecisionTree() {
               </div>
 
               <div className="text-center text-slate-400 text-sm py-4">
-                Mental Capacity Act (2005) • access: technology
+                Mental Capacity Act (2005) • <a href="https://accesstechnology.co.uk" target="_blank" rel="noopener noreferrer" className="hover:text-slate-600 transition-colors">access: technology</a>
               </div>
             </div>
           </div>
