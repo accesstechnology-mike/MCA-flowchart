@@ -169,7 +169,7 @@
     "r-capacity-confirmed": {
       "id": "r-capacity-confirmed",
       "text": "Outcome: Capacity Confirmed",
-      "details": "Section 1 of the Mental Capacity Act (2005) states that a person must be assumed to have capacity unless it is established that they lack capacity.\n\nThe client is assumed to have the ability to make their own decision.",
+      "details": "The formal capacity assessment has determined that the client has the necessary capacity to make this specific decision.\n\n<b>Guidance for practice:</b>\n\n• <b>Respect the decision:</b> The client has the legal right to make this decision, even if professionals or family members disagree or consider it unwise\n• <b>Ongoing Risks:</b> If there are significant risks, consider if a referral for other support (e.g., Care Act assessment) or safeguarding is appropriate, independent of their capacity status\n• <b>Coercion or Undue Influence:</b> If you suspect the client is being pressured, the MCA may not apply, but other legal frameworks (like the High Court's Inherent Jurisdiction) might. Seek legal advice if coercion is suspected",
       "type": "result",
       "status": "capacity"
     },

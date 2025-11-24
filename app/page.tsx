@@ -320,10 +320,10 @@ export default function DecisionTree() {
                            <span>Guidance</span>
                         </div>
                       )}
-                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' || currentNode.id === 'r-process-complete' ? (
+                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' ? (
                         <>
                           {currentNode.details.split('\n\n').filter((para, idx) => {
-                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete') {
+                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed') {
                               const paraText = para.trim();
                               return !paraText.includes('•') && paraText.length > 0;
                             } else {
@@ -334,7 +334,7 @@ export default function DecisionTree() {
                              para.trim() && <p key={idx} dangerouslySetInnerHTML={{ __html: para }} />
                           ))}
                           
-                          {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete') && currentNode.details.includes('<b>') && (
+                          {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed') && currentNode.details.includes('<b>') && (
                              (() => {
                                const boldBlock = currentNode.details.split('\n\n').find(p => p.includes('<b>') && p.includes('•'));
                                if (boldBlock) {
@@ -342,23 +342,6 @@ export default function DecisionTree() {
                                  if (introMatch) {
                                     return <p className="font-bold mb-2">{introMatch[1].replace(/<\/?b>/g, '').trim()}:</p>;
                                  }
-                               }
-                               // Fallback for r-process-complete which might not have bullet point immediately after bold or different structure
-                               if (currentNode.id === 'r-process-complete') {
-                                    // We already rendered the intro text above (it doesn't have bullets)
-                                    // We need to find the bullet list part.
-                                    // Wait, the filter above removed anything with '•'.
-                                    // So we just need to render the bullets below.
-                                    // But we also need to render "Action: Continue to remain alert to any changes." which is bold but not part of bullets?
-                                    // The structure is:
-                                    // Text
-                                    // <b>Action...</b>
-                                    // Text (Capacity assessments...)
-                                    // • Bullets
-                                    
-                                    // My previous logic for 'r-consider-alternatives' assumes bold text is a header for bullets.
-                                    // Let's check formatting.
-                                    return null;
                                }
                                return null;
                              })()
