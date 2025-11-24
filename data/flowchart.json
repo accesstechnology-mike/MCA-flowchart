@@ -234,7 +234,7 @@
     "r-documentation-needed": {
       "id": "r-documentation-needed",
       "text": "Action: Document Steps and Considerations",
-      "details": "It is essential that all steps taken and key considerations in the best interest decision-making process are clearly evidenced and documented.\n\n<b>Documentation should include:</b>\n\n• The decision being made and why it is needed\n• Evidence of the capacity assessment and its outcome\n• The client's views, wishes, feelings and preferences\n• Views of family, friends and others consulted\n• Alternatives considered and why they were rejected\n• How the decision is in the client's best interests\n• How the decision is the least restrictive option\n• Any risks and how they will be managed\n• When the decision will be reviewed",
+      "details": "It is essential that all steps taken and key considerations in the best interest decision-making process are clearly evidenced and documented.\n\n<b>Documentation should include:</b>\n\n• The decision being made and why it is needed\n• Evidence of the capacity assessment and its outcome\n• Evidence of the programme of support provided and how the client engaged with it\n• The client's views, wishes, feelings and preferences\n• Views of family, friends and others consulted\n• Alternatives considered and why they were rejected\n• How the decision is in the client's best interests\n• How the decision is the least restrictive option\n• Any risks and how they will be managed\n• When the decision will be reviewed",
       "type": "result",
       "status": "incapacity"
     },
