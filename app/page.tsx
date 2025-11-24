@@ -281,12 +281,10 @@ export default function DecisionTree() {
           <div className="space-y-4 animate-in fade-in duration-500 flex-grow">
             <div className="flex items-start gap-4">
                {isResult ? (
-                  isCapacity ? (
-                    currentNode.id === 'r-schedule-review' ? (
-                      <Calendar className="text-blue-500 shrink-0" size={32} />
-                    ) : (
-                      <CheckCircle className="text-green-500 shrink-0" size={32} />
-                    )
+                  currentNode.id === 'r-schedule-review' ? (
+                    <Calendar className="text-red-500 shrink-0" size={32} />
+                  ) : isCapacity ? (
+                    <CheckCircle className="text-green-500 shrink-0" size={32} />
                   ) : (
                     currentNode.text.startsWith('Action:') || currentNode.text.startsWith('Action Required:') ? (
                       <div className="bg-red-500 p-2 rounded-full shrink-0">
@@ -305,7 +303,7 @@ export default function DecisionTree() {
                <div className="space-y-2">
                   <h2 className={cn(
                     "text-2xl font-semibold leading-tight",
-                    isResult ? (isCapacity ? (currentNode.id === 'r-schedule-review' ? "text-blue-700" : "text-green-700") : "text-red-700") : "text-slate-800"
+                    isResult ? (isCapacity ? "text-green-700" : "text-red-700") : "text-slate-800"
                   )}>
                     {currentNode.text}
                   </h2>
@@ -320,7 +318,7 @@ export default function DecisionTree() {
                            <span>Guidance</span>
                         </div>
                       )}
-                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' ? (
+                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' ? (
                         <>
                           {currentNode.details.split('\n\n').filter((para, idx) => {
                             if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision') {

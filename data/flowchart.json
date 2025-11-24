@@ -218,9 +218,9 @@
     "r-schedule-review": {
       "id": "r-schedule-review",
       "text": "Action: Schedule Review",
-      "details": "The Mental Capacity Act Code of practice (2013) makes clear that decisions are kept under regular review and reconsidered where circumstances change, where capacity may fluctuate, or where new information becomes available, to ensure the decision remains appropriate, proportionate and in the Client's best interests.\n\nAll decisions, support and actions taken in the client's best interests must be routinely reviewed. Schedule dates in the diary to ensure this happens.",
+      "details": "The Mental Capacity Act Code of practice (2013) makes clear that decisions are kept under regular review and reconsidered where circumstances change, where capacity may fluctuate, or where new information becomes available, to ensure the decision remains appropriate, proportionate and in the Client's best interests.\n\n• All decisions, support and actions taken in the client's best interests must be routinely reviewed\n• Schedule dates in the diary to ensure this happens",
       "type": "result",
-      "status": "capacity"
+      "status": "incapacity"
     },
     "r-process-complete": {
       "id": "r-process-complete",
