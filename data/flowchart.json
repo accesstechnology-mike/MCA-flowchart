@@ -109,8 +109,17 @@
       "details": "<b>Consider:</b>\n\n• Can the same outcome be achieved in a less restrictive way?\n• Have all practical alternatives been explored and ruled out?\n• Does this option interfere with the client's rights and freedoms as little as possible?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q-review-date" },
+        { "label": "Yes", "nextNodeId": "q-documentation" },
         { "label": "No", "nextNodeId": "r-least-restrictive-needed" }
+      ]
+    },
+    "q-documentation": {
+      "id": "q-documentation",
+      "text": "Have steps taken and key considerations to date been evidenced and documented?",
+      "type": "question",
+      "options": [
+        { "label": "Yes", "nextNodeId": "q-review-date" },
+        { "label": "No", "nextNodeId": "r-documentation-needed" }
       ]
     },
     "q10": {
@@ -219,6 +228,13 @@
       "id": "r-schedule-review",
       "text": "Action: Schedule Review",
       "details": "The Mental Capacity Act Code of practice (2013) makes clear that decisions are kept under regular review and reconsidered where circumstances change, where capacity may fluctuate, or where new information becomes available, to ensure the decision remains appropriate, proportionate and in the Client's best interests.\n\n• All decisions, support and actions taken in the client's best interests must be routinely reviewed\n• Schedule dates in the diary to ensure this happens",
+      "type": "result",
+      "status": "incapacity"
+    },
+    "r-documentation-needed": {
+      "id": "r-documentation-needed",
+      "text": "Action: Document Steps and Considerations",
+      "details": "It is essential that all steps taken and key considerations in the best interest decision-making process are clearly evidenced and documented.\n\n<b>Documentation should include:</b>\n\n• The decision being made and why it is needed\n• Evidence of the capacity assessment and its outcome\n• The client's views, wishes, feelings and preferences\n• Views of family, friends and others consulted\n• Alternatives considered and why they were rejected\n• How the decision is in the client's best interests\n• How the decision is the least restrictive option\n• Any risks and how they will be managed\n• When the decision will be reviewed",
       "type": "result",
       "status": "incapacity"
     },
