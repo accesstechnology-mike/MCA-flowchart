@@ -110,7 +110,7 @@
       "type": "question",
       "options": [
         { "label": "Yes", "nextNodeId": "q-review-date" },
-        { "label": "No", "nextNodeId": "r-consider-alternatives" }
+        { "label": "No", "nextNodeId": "r-least-restrictive-needed" }
       ]
     },
     "q10": {
@@ -198,6 +198,13 @@
       "id": "r-dol-warning",
       "text": "Outcome: Potential Deprivation of Liberty",
       "details": "Under the Deprivation of Liberty Safeguards (DoLS) framework the proposed Best Interest decision/act may amount to a Deprivation of Liberty and may require appropriate application to and authorisation from the Court of Protection.\n\n<b>Parental responsibility cannot be used to authorise a Deprivation of Liberty.</b>",
+      "type": "result",
+      "status": "incapacity"
+    },
+    "r-least-restrictive-needed": {
+      "id": "r-least-restrictive-needed",
+      "text": "Action: Consider Less Restrictive Options",
+      "details": "Section 1 of the Mental Capacity Act (2005) states that before the act is done, or the decision is made, regard must be had to whether the purpose for which it is needed can be as effectively achieved in a way that is less restrictive of the client's rights and freedom of action.\n\n<b>The proposed Best Interest decision/act should be reconsidered:\n\n• All possible alternatives should be actively considered\n\n• Where an alternative remains unsuitable there should be clear evidence to support this\n\n• Justification should be well documented</b>",
       "type": "result",
       "status": "incapacity"
     },

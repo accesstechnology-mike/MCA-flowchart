@@ -276,7 +276,13 @@ export default function DecisionTree() {
                       <CheckCircle className="text-green-500 shrink-0" size={32} />
                     )
                   ) : (
-                    <XCircle className="text-red-500 shrink-0" size={32} />
+                    currentNode.text.startsWith('Action:') || currentNode.text.startsWith('Action Required:') ? (
+                      <div className="bg-red-500 p-2 rounded-full shrink-0">
+                        <ArrowRight className="text-white shrink-0" size={24} />
+                      </div>
+                    ) : (
+                      <XCircle className="text-red-500 shrink-0" size={32} />
+                    )
                   )
                ) : (
                   <div className="bg-blue-600 p-2 rounded-full shrink-0">
@@ -302,10 +308,10 @@ export default function DecisionTree() {
                            <span>Guidance</span>
                         </div>
                       )}
-                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' ? (
+                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' ? (
                         <>
                           {currentNode.details.split('\n\n').filter((para, idx) => {
-                            if (currentNode.id === 'r-consider-alternatives') {
+                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed') {
                               const paraText = para.trim();
                               return !paraText.includes('•') && paraText.length > 0;
                             } else {
@@ -316,7 +322,7 @@ export default function DecisionTree() {
                              para.trim() && <p key={idx} dangerouslySetInnerHTML={{ __html: para }} />
                           ))}
                           
-                          {currentNode.id === 'r-consider-alternatives' && currentNode.details.includes('<b>') && (
+                          {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed') && currentNode.details.includes('<b>') && (
                              (() => {
                                const boldBlock = currentNode.details.split('\n\n').find(p => p.includes('<b>') && p.includes('•'));
                                if (boldBlock) {
@@ -359,8 +365,8 @@ export default function DecisionTree() {
           {/* Actions */}
           <div className="grid gap-4 pt-8 mt-auto">
             {currentNode.options?.map((option, idx) => {
-              const isYes = option.label === 'Yes';
-              const isNo = option.label === 'No';
+              const isYes = option.label === 'Yes' || option.label === "It's possible";
+              const isNo = option.label === 'No' || option.label === "It's unlikely";
               
               return (
                 <button
