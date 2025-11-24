@@ -133,7 +133,7 @@
     },
     "q-review-date": {
       "id": "q-review-date",
-      "text": "Is a date in the diary to review the best interest decision?",
+      "text": "Is a date booked with relevant people to review the best interest decision?",
       "type": "question",
       "options": [
         { "label": "Yes", "nextNodeId": "r-process-complete" },
