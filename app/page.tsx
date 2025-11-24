@@ -320,10 +320,10 @@ export default function DecisionTree() {
                            <span>Guidance</span>
                         </div>
                       )}
-                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting' || currentNode.id === 'r-dol-warning' ? (
+                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' ? (
                         <>
                           {currentNode.details.split('\n\n').filter((para, idx) => {
-                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting' || currentNode.id === 'r-dol-warning') {
+                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9') {
                               const paraText = para.trim();
                               return !paraText.includes('•') && paraText.length > 0;
                             } else {
@@ -334,7 +334,7 @@ export default function DecisionTree() {
                              para.trim() && <p key={idx} dangerouslySetInnerHTML={{ __html: para }} />
                           ))}
                           
-                          {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting' || currentNode.id === 'r-dol-warning') && currentNode.details.includes('<b>') && (
+                          {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9') && currentNode.details.includes('<b>') && (
                              (() => {
                                const boldBlocks = currentNode.details.split('\n\n').filter(p => p.includes('<b>'));
                                if (boldBlocks.length > 0) {
