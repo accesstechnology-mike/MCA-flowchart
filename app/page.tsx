@@ -320,10 +320,10 @@ export default function DecisionTree() {
                            <span>Guidance</span>
                         </div>
                       )}
-                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting' ? (
+                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting' || currentNode.id === 'r-dol-warning' ? (
                         <>
                           {currentNode.details.split('\n\n').filter((para, idx) => {
-                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting') {
+                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting' || currentNode.id === 'r-dol-warning') {
                               const paraText = para.trim();
                               return !paraText.includes('•') && paraText.length > 0;
                             } else {
@@ -334,14 +334,20 @@ export default function DecisionTree() {
                              para.trim() && <p key={idx} dangerouslySetInnerHTML={{ __html: para }} />
                           ))}
                           
-                          {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting') && currentNode.details.includes('<b>') && (
+                          {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting' || currentNode.id === 'r-dol-warning') && currentNode.details.includes('<b>') && (
                              (() => {
-                               const boldBlock = currentNode.details.split('\n\n').find(p => p.includes('<b>') && p.includes('•'));
-                               if (boldBlock) {
-                                 const introMatch = boldBlock.match(/<b>([^•]+):/);
-                                 if (introMatch) {
-                                    return <p className="font-bold mb-2">{introMatch[1].replace(/<\/?b>/g, '').trim()}:</p>;
-                                 }
+                               const boldBlocks = currentNode.details.split('\n\n').filter(p => p.includes('<b>'));
+                               if (boldBlocks.length > 0) {
+                                 return boldBlocks.map((block, idx) => {
+                                    if (block.includes('•') && currentNode.id !== 'r-dol-warning') {
+                                      // For nodes where bold is a header for bullets in the same block (legacy structure)
+                                      const introMatch = block.match(/<b>([^•]+):/);
+                                      if (introMatch) {
+                                        return <p key={idx} className="font-bold mb-2">{introMatch[1].replace(/<\/?b>/g, '').trim()}:</p>;
+                                      }
+                                    }
+                                    return null;
+                                 });
                                }
                                return null;
                              })()

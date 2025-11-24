@@ -197,7 +197,7 @@
     "r-dol-warning": {
       "id": "r-dol-warning",
       "text": "Outcome: Potential Deprivation of Liberty",
-      "details": "Under the Deprivation of Liberty Safeguards (DoLS) framework the proposed Best Interest decision/act may amount to a Deprivation of Liberty and may require appropriate application to and authorisation from the Court of Protection.\n\n<b>Parental responsibility cannot be used to authorise a Deprivation of Liberty.</b>",
+      "details": "The proposed Best Interest decision/act may amount to a Deprivation of Liberty.\n\n<b>This requires legal authorisation.</b>\n\nConsider the 'Acid Test' for deprivation of liberty:\n\n• Is the person under continuous supervision and control?\n• Is the person not free to leave?\n\n<b>Next Steps:</b>\n\n• A standard DoLS authorisation or Court of Protection application may be required\n• Consult your legal team or DoLS lead immediately\n• Parental responsibility cannot be used to authorise a deprivation of liberty",
       "type": "result",
       "status": "incapacity"
     },
