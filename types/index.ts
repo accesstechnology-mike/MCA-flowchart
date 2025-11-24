@@ -1,6 +1,7 @@
 export interface Option {
   label: string;
   nextNodeId: string;
+  statement?: string;
 }
 
 export interface Node {
@@ -11,11 +12,10 @@ export interface Node {
   type: 'question' | 'result';
   options?: Option[];
   status?: 'capacity' | 'incapacity';
+  emailTemplate?: string;
 }
 
 export interface FlowchartData {
   startNodeId: string;
   nodes: Record<string, Node>;
 }
-
-

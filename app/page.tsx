@@ -3,9 +3,10 @@
 import { useState, useEffect } from 'react';
 import { FlowchartData, Node } from '@/types';
 import flowchartData from '@/data/flowchart.json';
-import { ArrowLeft, RotateCcw, CheckCircle, XCircle, AlertCircle, Calendar, Download, Info, AlertTriangle, ShieldAlert, ArrowRight, HelpCircle, Star } from 'lucide-react';
+import { ArrowLeft, RotateCcw, CheckCircle, XCircle, AlertCircle, Calendar, Download, Info, AlertTriangle, ShieldAlert, ArrowRight, HelpCircle, Star, Copy, Check, FileText } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import SummaryModal from './components/SummaryModal';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -17,6 +18,7 @@ export default function DecisionTree() {
   const [currentNodeId, setCurrentNodeId] = useState<string>(data.startNodeId);
   const [history, setHistory] = useState<string[]>([]);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [isSummaryOpen, setIsSummaryOpen] = useState(false);
 
   // Initialize from history state on mount
   useEffect(() => {
@@ -108,6 +110,20 @@ export default function DecisionTree() {
     setShowWelcome(false);
     setHistory([]);
     setCurrentNodeId(data.startNodeId);
+  };
+
+  const getPathSummary = () => {
+    return history.map((nodeId, index) => {
+      const node = data.nodes[nodeId];
+      const nextNodeId = index < history.length - 1 ? history[index + 1] : currentNodeId;
+      const selectedOption = node.options?.find(opt => opt.nextNodeId === nextNodeId);
+      
+      return {
+        question: node.text,
+        answer: selectedOption?.label || 'Unknown',
+        statement: selectedOption?.statement
+      };
+    });
   };
 
   // Show welcome screen first
@@ -412,12 +428,31 @@ export default function DecisionTree() {
             })}
 
             {isResult && (
-              <button
-                onClick={handleRestart}
-                className="mt-4 w-full flex items-center justify-center gap-2 px-6 py-4 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors font-medium"
-              >
-                <RotateCcw size={18} /> Start New Assessment
-              </button>
+              <>
+                <button
+                  onClick={() => setIsSummaryOpen(true)}
+                  className="mt-8 w-full flex items-center justify-center gap-2 px-6 py-4 bg-white border-2 border-slate-200 text-slate-700 rounded-xl hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition-all font-medium text-lg group"
+                >
+                  <FileText className="group-hover:scale-110 transition-transform" size={20} /> 
+                  View Assessment Summary
+                </button>
+
+                <button
+                  onClick={handleRestart}
+                  className="mt-4 w-full flex items-center justify-center gap-2 px-6 py-4 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors font-medium text-lg shadow-lg shadow-slate-200"
+                >
+                  <RotateCcw size={20} /> Start New Assessment
+                </button>
+
+                <SummaryModal 
+                  isOpen={isSummaryOpen}
+                  onClose={() => setIsSummaryOpen(false)}
+                  pathItems={getPathSummary()}
+                  outcome={currentNode.text}
+                  emailTemplate={currentNode.emailTemplate}
+                  status={isLackingCapacity ? 'incapacity' : 'capacity'}
+                />
+              </>
             )}
           </div>
 

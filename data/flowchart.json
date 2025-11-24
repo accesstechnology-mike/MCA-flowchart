@@ -7,8 +7,8 @@
       "details": "The Mental Capacity Act applies to individuals aged 16 and over.",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q2" },
-        { "label": "No", "nextNodeId": "q-safeguarding" }
+        { "label": "Yes", "nextNodeId": "q2", "statement": "The client is 16 years of age or older, so the Mental Capacity Act (2005) applies." },
+        { "label": "No", "nextNodeId": "q-safeguarding", "statement": "The client is under 16 years of age." }
       ]
     },
     "q-safeguarding": {
@@ -16,8 +16,8 @@
       "text": "Are there any safeguarding concerns in relation to the decisions being made about the client's care?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "r-safeguarding" },
-        { "label": "No", "nextNodeId": "r-under-16" }
+        { "label": "Yes", "nextNodeId": "r-safeguarding", "statement": "Safeguarding concerns have been identified regarding the client's care." },
+        { "label": "No", "nextNodeId": "r-under-16", "statement": "There are no immediate safeguarding concerns identified." }
       ]
     },
     "q2": {
@@ -25,8 +25,8 @@
       "text": "Are there any concerns about the client's ability to understand, retain, weigh, use or communicate information to make their own decision?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q3" },
-        { "label": "No", "nextNodeId": "r-capacity-presumed" }
+        { "label": "Yes", "nextNodeId": "q3", "statement": "There are concerns about the client's ability to understand, retain, weigh, use, or communicate information relevant to the decision." },
+        { "label": "No", "nextNodeId": "r-capacity-presumed", "statement": "There are no concerns about the client's ability to understand, retain, weigh, use, or communicate information relevant to the decision." }
       ]
     },
     "q3": {
@@ -35,8 +35,8 @@
       "details": "An adequate programme of support includes:\n\n• Information presented in an accessible and understandable format\n• Consideration of the individual's literacy level and comprehension\n• Adaptation to the person's communication style and preferred methods\n• Support for memory difficulties, including repetition and reinforcement\n• Alignment with the individual's learning style and processing abilities\n• Opportunities for information to be revisited over time\n• Consistency of approach across professionals and environments\n• Sufficient time for the individual to process and respond",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q3b" },
-        { "label": "No", "nextNodeId": "r-support-needed" }
+        { "label": "Yes", "nextNodeId": "q3b", "statement": "The client has been provided with an adequate programme of support to help them understand and process the relevant information." },
+        { "label": "No", "nextNodeId": "r-support-needed", "statement": "The client has not yet received an adequate programme of support to help them make the decision." }
       ]
     },
     "q3b": {
@@ -44,8 +44,8 @@
       "text": "Is there clear evidence that the client is unable to understand, retain, use, weigh, or communicate relevant information to make a decision due to an impairment or disturbance of the mind or brain, rather than simply making an unwise decision?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q4" },
-        { "label": "No", "nextNodeId": "r-unwise-decision" }
+        { "label": "Yes", "nextNodeId": "q4", "statement": "There is clear evidence that the client's inability to decide is caused by an impairment or disturbance of the mind or brain." },
+        { "label": "No", "nextNodeId": "r-unwise-decision", "statement": "There is no clear evidence that the inability to decide is due to an impairment or disturbance; it may be an unwise decision." }
       ]
     },
     "q4": {
@@ -53,8 +53,8 @@
       "text": "Has the client undergone a formal capacity assessment?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q5" },
-        { "label": "No", "nextNodeId": "r-assessment-needed" }
+        { "label": "Yes", "nextNodeId": "q5", "statement": "A formal capacity assessment has been completed for this specific decision." },
+        { "label": "No", "nextNodeId": "r-assessment-needed", "statement": "A formal capacity assessment has not yet been completed." }
       ]
     },
     "q5": {
@@ -62,8 +62,8 @@
       "text": "Was the client found to be lacking capacity to make the decision?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q10" },
-        { "label": "No", "nextNodeId": "r-capacity-confirmed" }
+        { "label": "Yes", "nextNodeId": "q10", "statement": "The formal assessment determined that the client lacks capacity to make this specific decision." },
+        { "label": "No", "nextNodeId": "r-capacity-confirmed", "statement": "The formal assessment determined that the client has the capacity to make this specific decision." }
       ]
     },
     "q6": {
@@ -71,8 +71,8 @@
       "text": "Has a Best Interest Meeting been held?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q8" },
-        { "label": "No", "nextNodeId": "r-hold-meeting" }
+        { "label": "Yes", "nextNodeId": "q8", "statement": "A Best Interest Meeting has been held involving relevant parties." },
+        { "label": "No", "nextNodeId": "r-hold-meeting", "statement": "A Best Interest Meeting has not yet been held." }
       ]
     },
     "q7": {
@@ -80,8 +80,8 @@
       "text": "Have the client’s views, wishes and preferences been explored and appropriately considered in relation to this decision?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q6" },
-        { "label": "No", "nextNodeId": "r-seek-views" }
+        { "label": "Yes", "nextNodeId": "q6", "statement": "The client's views, wishes, and preferences have been explored and considered." },
+        { "label": "No", "nextNodeId": "r-seek-views", "statement": "The client's views, wishes, and preferences have not yet been adequately explored." }
       ]
     },
     "q8": {
@@ -89,8 +89,8 @@
       "text": "Could the proposed Best Interest decision/act result in the client being under continuous supervision and control and unable to freely leave their home?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "r-dol-warning" },
-        { "label": "No", "nextNodeId": "q8b" }
+        { "label": "Yes", "nextNodeId": "r-dol-warning", "statement": "The proposed decision/act may result in the client being under continuous supervision and control and unable to freely leave." },
+        { "label": "No", "nextNodeId": "q8b", "statement": "The proposed decision/act will not result in continuous supervision and control." }
       ]
     },
     "q8b": {
@@ -99,8 +99,8 @@
       "details": "A proportionate decision/act can be justified because:\n\n• The decision/act is not too heavy handed or blanket\n\n• It is tailored to the individual's specific circumstances and needs\n\n• The level of intervention matches the level of risk or need\n\n• It considers the severity of the consequences of not taking this decision/act\n\n• It considers the likelihood of those consequences occurring",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q9" },
-        { "label": "No", "nextNodeId": "r-consider-alternatives" }
+        { "label": "Yes", "nextNodeId": "q9", "statement": "The proposed decision/act is considered proportionate to the risks involved." },
+        { "label": "No", "nextNodeId": "r-consider-alternatives", "statement": "The proposed decision/act may not be proportionate to the risks involved." }
       ]
     },
     "q9": {
@@ -109,8 +109,8 @@
       "details": "<b>Consider:</b>\n\n• Can the same outcome be achieved in a less restrictive way?\n• Have all practical alternatives been explored and ruled out?\n• Does this option interfere with the client's rights and freedoms as little as possible?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q-documentation" },
-        { "label": "No", "nextNodeId": "r-least-restrictive-needed" }
+        { "label": "Yes", "nextNodeId": "q-documentation", "statement": "The proposed decision/act is considered the least restrictive option to achieve the necessary outcome." },
+        { "label": "No", "nextNodeId": "r-least-restrictive-needed", "statement": "The proposed decision/act may not be the least restrictive option available." }
       ]
     },
     "q-documentation": {
@@ -118,8 +118,8 @@
       "text": "Have steps taken and key considerations to date been evidenced and documented?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q-review-date" },
-        { "label": "No", "nextNodeId": "r-documentation-needed" }
+        { "label": "Yes", "nextNodeId": "q-review-date", "statement": "All steps taken and key considerations have been clearly evidenced and documented." },
+        { "label": "No", "nextNodeId": "r-documentation-needed", "statement": "The steps taken and key considerations have not yet been fully documented." }
       ]
     },
     "q10": {
@@ -127,8 +127,8 @@
       "text": "Is the client expected to gain/regain capacity?",
       "type": "question",
       "options": [
-        { "label": "It's possible", "nextNodeId": "r-delay-decision" },
-        { "label": "It's unlikely", "nextNodeId": "q7" }
+        { "label": "It's possible", "nextNodeId": "r-delay-decision", "statement": "It is possible that the client may regain capacity in the future." },
+        { "label": "It's unlikely", "nextNodeId": "q7", "statement": "It is unlikely that the client will regain capacity for this decision." }
       ]
     },
     "q-review-date": {
@@ -136,8 +136,8 @@
       "text": "Is a date booked with relevant people to review the best interest decision?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "r-process-complete" },
-        { "label": "No", "nextNodeId": "r-schedule-review" }
+        { "label": "Yes", "nextNodeId": "r-process-complete", "statement": "A formal review date has been scheduled." },
+        { "label": "No", "nextNodeId": "r-schedule-review", "statement": "A formal review date has not yet been scheduled." }
       ]
     },
     "r-under-16": {
@@ -145,112 +145,128 @@
       "text": "Outcome: Parental Responsibility",
       "details": "In most circumstances, for children under 16 years of age, parents or those with parental responsibility are legally responsible for making decisions concerning their child's care, treatment and general welfare, ensuring that all decisions are made in the child's best interests.",
       "type": "result",
-      "status": "capacity"
+      "status": "capacity",
+      "emailTemplate": "The client is under 16 years of age. The Mental Capacity Act (2005) does not apply. Decisions concerning care, treatment, and welfare should be made by those with parental responsibility in the child's best interests."
     },
     "r-safeguarding": {
       "id": "r-safeguarding",
       "text": "Action: Safeguarding Response",
       "details": "Where safeguarding concerns are identified, there is a legal duty to act in accordance with relevant safeguarding legislation, professionals must respond appropriately to protect the client from harm.\n\n<b>You should seek guidance from your designated safeguarding lead or access external safeguarding supervision to determine the most appropriate next steps.</b>",
       "type": "result",
-      "status": "incapacity"
+      "status": "incapacity",
+      "emailTemplate": "Safeguarding concerns have been identified. There is a legal duty to act in accordance with relevant safeguarding legislation to protect the client from harm.\n\nImmediate Action: Seek guidance from the designated safeguarding lead or access external safeguarding supervision to determine the most appropriate next steps."
     },
     "r-capacity-presumed": {
       "id": "r-capacity-presumed",
       "text": "Outcome: Capacity Assumed",
       "details": "The presumption of capacity applies. This means that the client is assumed to have the ability to make their own decision.",
       "type": "result",
-      "status": "capacity"
+      "status": "capacity",
+      "emailTemplate": "Based on the assessment, there are no concerns regarding the client's ability to make this decision. The presumption of capacity applies in accordance with Principle 1 of the Mental Capacity Act (2005). The client is assumed to have the ability to make their own decision."
     },
     "r-support-needed": {
       "id": "r-support-needed",
       "text": "Action Required: Provide Support",
       "details": "Section 1 of the Mental Capacity Act (2005) states that a person is not to be treated as unable to make a decision unless all practicable steps to help them to do so have been taken without success.\n\n<b>This client requires a programme of capacity building support to help them retain, weigh and use the relevant information to make the decision.</b>",
       "type": "result",
-      "status": "incapacity"
+      "status": "incapacity",
+      "emailTemplate": "The client has not yet received all practicable support to make the decision. Section 1 of the Mental Capacity Act (2005) requires that a person is not treated as unable to make a decision unless all practicable steps to help them have been taken without success.\n\nRequired Action: Implement a programme of capacity-building support (e.g., accessible information, communication aids, speech and language therapy) to help the client understand, retain, weigh, and use the relevant information."
     },
     "r-assessment-needed": {
       "id": "r-assessment-needed",
       "text": "Action Required: Formal Assessment",
       "details": "Section 1 of the Mental Capacity Act (2005) states that a person must be assumed to have capacity unless it is established that they lack capacity.\n\n<b>This client requires a decision specific formal capacity assessment.</b>",
       "type": "result",
-      "status": "incapacity"
+      "status": "incapacity",
+      "emailTemplate": "There is evidence suggesting the client may lack capacity due to an impairment or disturbance of the mind or brain, but a formal assessment has not yet been completed.\n\nRequired Action: Arrange for a decision-specific formal capacity assessment to be undertaken to determine if the client lacks capacity to make this specific decision."
     },
     "r-capacity-confirmed": {
       "id": "r-capacity-confirmed",
       "text": "Outcome: Capacity Confirmed",
       "details": "The formal capacity assessment has determined that the client has the necessary capacity to make this specific decision.\n\n<b>Guidance for practice:</b>\n\n• The client has the legal right to make this decision, even if professionals or family members disagree or consider it unwise\n• If there are significant risks, consider if a referral for other support or safeguarding is appropriate, independent of their capacity status\n• If you suspect the client is being pressured, the MCA may not apply, but other legal frameworks might. Seek legal advice if coercion is suspected",
       "type": "result",
-      "status": "capacity"
+      "status": "capacity",
+      "emailTemplate": "The formal capacity assessment has confirmed that the client has the necessary capacity to make this specific decision. The client has the legal right to make this decision, even if it is considered unwise by others.\n\nNote: Ensure any risks are managed through appropriate support or safeguarding if applicable, independent of their capacity status."
     },
     "r-delay-decision": {
       "id": "r-delay-decision",
       "text": "Action: Consider if it's possible to delay the decision",
       "details": "In accordance with Section 4 of the Mental Capacity Act (2005), consideration must be given to whether the client may regain capacity and, if so, whether the decision can reasonably be delayed until such time that they are able to participate fully in the decision-making process.\n\n<b>Consider:\n\n• If the decision can be safely delayed until capacity returns\n\n• Avoiding making permanent decisions unnecessarily\n\n• Reassessing capacity at an appropriate time</b>",
       "type": "result",
-      "status": "incapacity"
+      "status": "incapacity",
+      "emailTemplate": "It is possible that the client may regain capacity in the future. Section 4 of the MCA requires consideration of whether the decision can be reasonably delayed.\n\nRequired Action: Evaluate if the decision can be safely delayed until the client is able to participate fully. Avoid making permanent decisions unnecessarily and plan to reassess capacity."
     },
     "r-hold-meeting": {
       "id": "r-hold-meeting",
       "text": "Action: Hold Best Interest Meeting",
       "details": "Section 1 of the Mental Capacity Act (2005) states that any act or decision made on behalf of a person who lacks capacity must be done, or made, in their best interests.\n\n<b>A Best Interest Meeting should be held to ascertain the most appropriate next steps.</b>\n\nInclude the views of all people concerned with the client's care and welfare:\n\n• Family and friends\n• Professionals involved in care\n• Independent Mental Capacity Advocate (IMCA) if applicable\n• Court Appointed Deputy (Property & Affairs or Health & Welfare)\n• Anyone named by the person to be consulted",
       "type": "result",
-      "status": "incapacity"
+      "status": "incapacity",
+      "emailTemplate": "The client lacks capacity for this decision, and a Best Interest decision is required. Section 1 of the MCA states that any decision made on behalf of a person who lacks capacity must be in their best interests.\n\nRequired Action: Convene a Best Interest Meeting involving all relevant parties (family, professionals, IMCA/Deputy if applicable) to determine the appropriate course of action."
     },
     "r-seek-views": {
       "id": "r-seek-views",
       "text": "Action: Seek Client's Views",
       "details": "In accordance with Section 4 of the Mental Capacity Act (2005), those making best interest decisions should permit and encourage the client to participate, or to improve their ability to participate, as fully as possible in any act done for them and any decision affecting them.\n\n<b>The views of the client should be sought and adequately considered.</b>\n\nConsider:\n\n• Using the client's preferred method of communication\n• Adapting information to the client's literacy level and comprehension\n• Choosing a time and location where the client feels most comfortable\n• Involving people the client trusts to support them\n• Using visual aids or objects of reference if helpful\n• Allowing sufficient time for the client to express themselves\n• Revisiting the topic on multiple occasions if needed",
       "type": "result",
-      "status": "incapacity"
+      "status": "incapacity",
+      "emailTemplate": "The client's views, wishes, and preferences have not yet been adequately explored. Section 4 of the MCA requires that the client is encouraged to participate in the decision-making process as fully as possible.\n\nRequired Action: Undertake further work to seek and consider the client's views, using appropriate communication methods and support. These views must be central to the Best Interest decision."
     },
     "r-dol-warning": {
       "id": "r-dol-warning",
       "text": "Action: Potential Deprivation of Liberty",
       "details": "The proposed Best Interest decision/act may amount to a Deprivation of Liberty.\n\n<b>This requires legal authorisation.</b>\n\n<b>Next Steps:</b>\n\nConsider the 'Acid Test' for deprivation of liberty:\n\n• Is the person under continuous supervision and control?\n• Is the person not free to leave?\n\n• A standard DoLS authorisation or Court of Protection application may be required\n• Consult your legal team or DoLS lead immediately\n• Parental responsibility cannot be used to authorise a deprivation of liberty",
       "type": "result",
-      "status": "incapacity"
+      "status": "incapacity",
+      "emailTemplate": "The proposed Best Interest decision indicates the client may be under continuous supervision and control and not free to leave. This may amount to a Deprivation of Liberty.\n\nRequired Action: Immediate legal authorisation is likely required (e.g., DoLS authorisation or Court of Protection application). Consult the legal team or DoLS lead immediately."
     },
     "r-least-restrictive-needed": {
       "id": "r-least-restrictive-needed",
       "text": "Action: Consider Less Restrictive Options",
       "details": "Section 1 of the Mental Capacity Act (2005) states that before the act is done, or the decision is made, regard must be had to whether the purpose for which it is needed can be as effectively achieved in a way that is less restrictive of the client's rights and freedom of action.\n\n<b>The proposed Best Interest decision/act should be reconsidered:\n\n• All possible alternatives should be actively considered\n\n• Where an alternative remains unsuitable there should be clear evidence to support this\n\n• Justification should be well documented</b>",
       "type": "result",
-      "status": "incapacity"
+      "status": "incapacity",
+      "emailTemplate": "The proposed decision may not be the least restrictive option. Section 1 of the MCA requires that regard must be had to whether the outcome can be achieved in a way that is less restrictive of the client's rights and freedoms.\n\nRequired Action: Reconsider the decision and explore all practical alternatives. If a restrictive option is chosen, clear evidence and justification for why less restrictive options are not suitable must be documented."
     },
     "r-consider-alternatives": {
       "id": "r-consider-alternatives",
       "text": "Action: Evaluate Whether Interference is Justified",
       "details": "The Mental Capacity Act Code of Practice (2013) makes clear that a proportionate response uses the least intrusive type and minimum amount of interference to achieve a specific outcome in the best interests of the person who lacks capacity.\n\nRestrictions and interference should be a last resort, not a first response.\n\n<b>The proposed Best Interest decision/act should be reconsidered:</b>\n\n<b>• Evaluate whether the interference of the proposed decision/act is justified\n\n• Ensure the approach is well measured and tailored to the individual, not a blanket approach\n\n• Consider whether a less restrictive or less intrusive approach could achieve the same purpose\n\n• If alternatives are unsuitable, there must be clear evidence and justification documented</b>",
       "type": "result",
-      "status": "incapacity"
+      "status": "incapacity",
+      "emailTemplate": "The proposed decision/act may not be proportionate to the risks. The MCA Code of Practice requires that any intervention uses the least intrusive method to achieve the best interest outcome.\n\nRequired Action: Re-evaluate whether the level of interference is justified. Ensure the decision is tailored to the individual's specific needs and is not a blanket approach. Explore less intrusive alternatives."
     },
     "r-schedule-review": {
       "id": "r-schedule-review",
       "text": "Action: Schedule Review",
       "details": "The Mental Capacity Act Code of practice (2013) makes clear that decisions are kept under regular review and reconsidered where circumstances change, where capacity may fluctuate, or where new information becomes available, to ensure the decision remains appropriate, proportionate and in the Client's best interests.\n\n• All decisions, support and actions taken in the client's best interests must be routinely reviewed\n• Schedule dates in the diary to ensure this happens",
       "type": "result",
-      "status": "incapacity"
+      "status": "incapacity",
+      "emailTemplate": "The Best Interest decision-making process is nearing completion, but a review date has not been set. Decisions made under the MCA must be kept under regular review.\n\nRequired Action: Schedule a specific date to review the decision to ensure it remains appropriate, proportionate, and in the client's best interests."
     },
     "r-documentation-needed": {
       "id": "r-documentation-needed",
       "text": "Action: Document Steps and Considerations",
       "details": "It is essential that all steps taken and key considerations in the best interest decision-making process are clearly evidenced and documented.\n\n<b>Documentation should include:</b>\n\n• The decision being made and why it is needed\n• Evidence of the capacity assessment and its outcome\n• Evidence of the programme of support provided and how the client engaged with it\n• The client's views, wishes, feelings and preferences\n• Views of family, friends and others consulted\n• Alternatives considered and why they were rejected\n• How the decision is in the client's best interests\n• How the decision is the least restrictive option\n• Any risks and how they will be managed\n• When the decision will be reviewed",
       "type": "result",
-      "status": "incapacity"
+      "status": "incapacity",
+      "emailTemplate": "The Best Interest process has been followed, but the steps and considerations have not been fully documented. Robust documentation is essential for legal and professional accountability.\n\nRequired Action: Clearly evidence and document all key considerations, including the capacity assessment, support provided, client's views, consultation with others, alternatives considered, and the rationale for the final decision."
     },
     "r-process-complete": {
       "id": "r-process-complete",
       "text": "Remain Vigilant",
       "details": "The MCA requires that capacity is decision and time specific, meaning it should be reassessed whenever circumstances indicate it may have changed.\n\n<b>Action: Continue to remain alert to any changes.</b>\n\nCapacity assessments should be repeated if:\n\n• The person's presentation, cognition, mental state, or communication has changed\n• There is evidence of fluctuation\n• A significant amount of time has passed\n• Consequences or risks associated with the decision have changed\n• There is disagreement or challenge around the assessment\n• Initial assessment was completed during an acute or unstable period",
       "type": "result",
-      "status": "capacity"
+      "status": "capacity",
+      "emailTemplate": "The Best Interest decision-making process is complete, and a review date has been set.\n\nAction: Proceed with the decision in the client's best interests. Remain vigilant to any changes in the client's presentation or circumstances that may suggest a change in capacity, requiring a reassessment."
     },
     "r-unwise-decision": {
       "id": "r-unwise-decision",
       "text": "Action: Evidence Gathering to Formulate Your Judgement",
       "details": "Section 1 of the Mental Capacity Act (2005) states that a person is not to be treated as unable to make a decision merely because they make an unwise decision.\n\nIndividuals have the right to make decisions that others may view as risky, illogical, or poor.\n\nProfessionals must not assume lack of capacity simply because they disagree with the decision or believe it is unwise.\n\n<b>Undertake a body of work to gather evidence to formulate your judgement.</b>\n\nIt may be helpful to consider:\n\n• If other people with capacity make similar decisions\n\n• Frequency and pattern of the decision/ behaviour over time\n\n• Consistency with the clients's past values and usual choices\n\n• Client's ability to explain their reasoning, even if controversial\n\n• Evidence that risks and consequences are understood\n\n• If greater support or time improves decision-making\n\n• Presence of insight into potential outcomes\n\n• If behaviour is context-specific or widespread",
       "type": "result",
-      "status": "incapacity"
+      "status": "incapacity",
+      "emailTemplate": "The client may be making an unwise decision, but there is currently no clear evidence that this is due to an impairment or disturbance of the mind or brain. Section 1 of the MCA confirms a person cannot be treated as unable to make a decision merely because it is unwise.\n\nRequired Action: Avoid assuming lack of capacity based solely on the decision's risk. Undertake further evidence gathering to determine if there is a causative link between any impairment and the inability to decide."
     }
   }
 }
