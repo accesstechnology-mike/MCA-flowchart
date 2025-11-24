@@ -177,7 +177,7 @@
     "r-dol-warning": {
       "id": "r-dol-warning",
       "text": "Outcome: Deprivation of Liberty",
-      "details": "Under the Deprivation of Liberty Safeguards (DoLS) framework this decision may amount to a Deprivation of Liberty and may require appropriate application to and authorisation from the Court of Protection.",
+      "details": "Under the Deprivation of Liberty Safeguards (DoLS) framework this decision may amount to a Deprivation of Liberty and may require appropriate application to and authorisation from the Court of Protection.\n\n<b>Parental responsibility cannot be used to authorise the deprivation of liberty.</b>",
       "type": "result",
       "status": "incapacity"
     },

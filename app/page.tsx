@@ -307,9 +307,28 @@ export default function DecisionTree() {
                   </h2>
                   {currentNode.details && (
                     <div className="text-slate-600 leading-relaxed text-lg space-y-4">
-                      {currentNode.details.split('\n\n').map((paragraph, index) => (
-                        <p key={index} dangerouslySetInnerHTML={{ __html: paragraph }} />
-                      ))}
+                      {currentNode.id === 'q3' ? (
+                        <>
+                          {currentNode.details.split('\n\n')[0] && (
+                            <p>{currentNode.details.split('\n\n')[0]}</p>
+                          )}
+                          <div className="space-y-3">
+                            {currentNode.details.split('\n\n')[1]?.split('\n').filter(line => line.trim().startsWith('•')).map((line, index) => {
+                              const text = line.replace(/^•\s*/, '').trim();
+                              return (
+                                <div key={index} className="flex items-start gap-3">
+                                  <CheckCircle className="text-green-500 shrink-0 mt-0.5" size={20} />
+                                  <span>{text}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </>
+                      ) : (
+                        currentNode.details.split('\n\n').map((paragraph, index) => (
+                          <p key={index} dangerouslySetInnerHTML={{ __html: paragraph }} />
+                        ))
+                      )}
                     </div>
                   )}
                </div>
