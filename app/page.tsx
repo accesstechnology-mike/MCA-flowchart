@@ -121,9 +121,11 @@ export default function DecisionTree() {
                     {currentNode.text}
                   </h2>
                   {currentNode.details && (
-                    <p className="text-slate-600 leading-relaxed text-lg">
-                      {currentNode.details}
-                    </p>
+                    <div className="text-slate-600 leading-relaxed text-lg space-y-4">
+                      {currentNode.details.split('\n\n').map((paragraph, index) => (
+                        <p key={index} dangerouslySetInnerHTML={{ __html: paragraph }} />
+                      ))}
+                    </div>
                   )}
                </div>
             </div>

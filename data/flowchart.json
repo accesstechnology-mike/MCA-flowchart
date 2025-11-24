@@ -114,12 +114,12 @@
       "text": "Outcome: Parental Responsibility",
       "details": "In most circumstances, for children under 16 years of age, parents or those with parental responsibility are legally responsible for making decisions concerning their child's care, treatment and general welfare, ensuring that all decisions are made in the child's best interests.",
       "type": "result",
-      "status": "incapacity"
+      "status": "capacity"
     },
     "r-safeguarding": {
       "id": "r-safeguarding",
       "text": "Action: Safeguarding Response",
-      "details": "Where safeguarding concerns are identified, there is a legal duty to act in accordance with relevant safeguarding legislation, professionals must respond appropriately to protect the client from harm.\n\nYou should seek guidance from your designated safeguarding lead or access external safeguarding supervision to determine the most appropriate next steps.",
+      "details": "Where safeguarding concerns are identified, there is a legal duty to act in accordance with relevant safeguarding legislation, professionals must respond appropriately to protect the client from harm.\n\n<b>You should seek guidance from your designated safeguarding lead or access external safeguarding supervision to determine the most appropriate next steps.</b>",
       "type": "result",
       "status": "incapacity"
     },
@@ -133,14 +133,14 @@
     "r-support-needed": {
       "id": "r-support-needed",
       "text": "Action Required: Provide Support",
-      "details": "Section 1 of the Mental Capacity Act (2005) states that a person is not to be treated as unable to make a decision unless all practicable steps to help them to do so have been taken without success.\n\nThis client requires a programme of capacity building support to help them retain, weigh and use the relevant information to make the decision.",
+      "details": "Section 1 of the Mental Capacity Act (2005) states that a person is not to be treated as unable to make a decision unless all practicable steps to help them to do so have been taken without success.\n\n<b>This client requires a programme of capacity building support to help them retain, weigh and use the relevant information to make the decision.</b>",
       "type": "result",
       "status": "incapacity"
     },
     "r-assessment-needed": {
       "id": "r-assessment-needed",
       "text": "Action Required: Formal Assessment",
-      "details": "Section 1 of the Mental Capacity Act (2005) states that a person must be assumed to have capacity unless it is established that they lack capacity.\n\nThis client requires a decision specific formal capacity assessment.",
+      "details": "Section 1 of the Mental Capacity Act (2005) states that a person must be assumed to have capacity unless it is established that they lack capacity.\n\n<b>This client requires a decision specific formal capacity assessment.</b>",
       "type": "result",
       "status": "incapacity"
     },
@@ -154,21 +154,21 @@
     "r-delay-decision": {
       "id": "r-delay-decision",
       "text": "Action: Delay Decision & Reassess",
-      "details": "In accordance with Section 4 of the Mental Capacity Act (2005), consideration must be given to whether the client may regain capacity and, if so, whether the decision can reasonably be delayed until such time that they are able to participate fully in the decision-making process.\n\nPrioritise the client's future ability to decide for themselves. Consider if the decision can be safely delayed until capacity returns. Avoid making permanent decisions unnecessarily. Consider reassessing capacity at an appropriate time.",
+      "details": "In accordance with Section 4 of the Mental Capacity Act (2005), consideration must be given to whether the client may regain capacity and, if so, whether the decision can reasonably be delayed until such time that they are able to participate fully in the decision-making process.\n\n<b>Prioritise the client's future ability to decide for themselves. Consider if the decision can be safely delayed until capacity returns. Avoid making permanent decisions unnecessarily. Consider reassessing capacity at an appropriate time.</b>",
       "type": "result",
       "status": "incapacity"
     },
     "r-hold-meeting": {
       "id": "r-hold-meeting",
       "text": "Action: Hold Best Interest Meeting",
-      "details": "Section 1 of the Mental Capacity Act (2005) states that any act or decision made on behalf of a person who lacks capacity must be done, or made, in their best interests.\n\nIn order to ascertain the most appropriate next steps, a best interest meeting should be held, to include the views of all people concerned with the client's care and welfare including professionals and legal deputy.",
+      "details": "Section 1 of the Mental Capacity Act (2005) states that any act or decision made on behalf of a person who lacks capacity must be done, or made, in their best interests.\n\n<b>In order to ascertain the most appropriate next steps, a best interest meeting should be held, to include the views of all people concerned with the client's care and welfare including professionals and legal deputy.</b>",
       "type": "result",
       "status": "incapacity"
     },
     "r-seek-views": {
       "id": "r-seek-views",
       "text": "Action: Seek Client's Views",
-      "details": "In accordance with Section 4 of the Mental Capacity Act (2005), those making best interest decisions should permit and encourage the client to participate, or to improve their ability to participate, as fully as possible in any act done for them and any decision affecting them.\n\nThe views of the client should be sought and adequately considered.",
+      "details": "In accordance with Section 4 of the Mental Capacity Act (2005), those making best interest decisions should permit and encourage the client to participate, or to improve their ability to participate, as fully as possible in any act done for them and any decision affecting them.\n\n<b>The views of the client should be sought and adequately considered.</b>",
       "type": "result",
       "status": "incapacity"
     },
@@ -182,7 +182,7 @@
     "r-consider-alternatives": {
       "id": "r-consider-alternatives",
       "text": "Action: Consider Less Restrictive Options",
-      "details": "Section 4 of the Mental Capacity Act (2005) states that before the act is done, or the decision is made, regard must be had to whether the purpose for which it is needed can be as effectively achieved in a way that is less restrictive of the client's rights and freedom of action.\n\nAll possible alternatives should be actively considered. Where an alternative remains unsuitable there should be clear evidence to support this and justification should be well documented.",
+      "details": "Section 4 of the Mental Capacity Act (2005) states that before the act is done, or the decision is made, regard must be had to whether the purpose for which it is needed can be as effectively achieved in a way that is less restrictive of the client's rights and freedom of action.\n\n<b>All possible alternatives should be actively considered. Where an alternative remains unsuitable there should be clear evidence to support this and justification should be well documented.</b>",
       "type": "result",
       "status": "incapacity"
     },
