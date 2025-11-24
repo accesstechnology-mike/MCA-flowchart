@@ -61,32 +61,33 @@ export default function DecisionTree() {
       <div className="max-w-2xl w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
         
         {/* Header */}
-        <div className="bg-slate-900 px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="bg-slate-900 px-4 md:px-6 py-3 md:py-4 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
             <img 
               src="/android-chrome-192x192.png" 
               alt="access: technology logo" 
-              className="h-8 w-8 object-contain"
+              className="h-6 w-6 md:h-8 md:w-8 object-contain shrink-0"
             />
-            <h1 className="text-xl font-bold text-white tracking-wide">
-              access: technology <span className="font-normal text-slate-400 text-sm ml-2">MCA Assessment Tool</span>
+            <h1 className="text-base md:text-xl font-bold text-white tracking-wide truncate">
+              access: technology <span className="font-normal text-slate-400 text-xs md:text-sm ml-1 md:ml-2 hidden sm:inline">MCA Assessment Tool</span>
             </h1>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4 shrink-0">
             {history.length > 0 && (
               <>
                 <button 
                   onClick={handleBack}
-                  className="text-slate-300 hover:text-white transition-colors flex items-center text-sm gap-2"
+                  className="text-slate-300 hover:text-white transition-colors flex items-center text-sm gap-1 md:gap-2"
+                  title="Back"
                 >
-                  <ArrowLeft size={16} /> Back
+                  <ArrowLeft size={16} /> <span className="hidden sm:inline">Back</span>
                 </button>
                 <button 
                   onClick={handleRestart}
-                  className="text-slate-300 hover:text-white transition-colors flex items-center text-sm gap-2"
+                  className="text-slate-300 hover:text-white transition-colors flex items-center text-sm gap-1 md:gap-2"
                   title="Restart Assessment"
                 >
-                  <RotateCcw size={16} /> Restart
+                  <RotateCcw size={16} /> <span className="hidden sm:inline">Restart</span>
                 </button>
               </>
             )}
@@ -94,7 +95,7 @@ export default function DecisionTree() {
         </div>
 
         {/* Content */}
-        <div className="p-8 md:p-10 min-h-[550px] flex flex-col">
+        <div className="p-8 md:p-10 min-h-[440px] flex flex-col">
           
           <div className="space-y-4 animate-in fade-in duration-500 flex-grow">
             <div className="flex items-start gap-4">
@@ -156,16 +157,16 @@ export default function DecisionTree() {
         </div>
 
         {/* Progress / Footer */}
-        <div className="bg-slate-50 px-6 py-4 border-t border-slate-100 grid grid-cols-1 md:grid-cols-3 gap-4 items-center text-sm text-slate-500">
-          <div className="justify-self-start">
+        <div className="bg-slate-50 px-6 py-4 border-t border-slate-100 flex md:grid md:grid-cols-3 justify-between md:justify-normal items-center gap-4 text-sm text-slate-500">
+          <div className="md:justify-self-start">
             Step {history.length + 1}
           </div>
           
-          <div className="justify-self-center font-medium text-slate-700 order-first md:order-none">
+          <div className="justify-self-center font-medium text-slate-700 order-first md:order-none hidden md:block">
             Mental Capacity Act (2005)
           </div>
 
-          <div className="flex items-center gap-4 justify-self-end">
+          <div className="flex items-center gap-4 md:justify-self-end">
             <a 
               href="/MCA%20Decision%20Making%20Pathway.pdf"
               download
