@@ -190,7 +190,7 @@
     "r-seek-views": {
       "id": "r-seek-views",
       "text": "Action: Seek Client's Views",
-      "details": "In accordance with Section 4 of the Mental Capacity Act (2005), those making best interest decisions should permit and encourage the client to participate, or to improve their ability to participate, as fully as possible in any act done for them and any decision affecting them.\n\n<b>The views of the client should be sought and adequately considered.</b>",
+      "details": "In accordance with Section 4 of the Mental Capacity Act (2005), those making best interest decisions should permit and encourage the client to participate, or to improve their ability to participate, as fully as possible in any act done for them and any decision affecting them.\n\n<b>The views of the client should be sought and adequately considered.</b>\n\nConsider:\n\n• Using the client's preferred method of communication\n• Adapting information to the client's literacy level and comprehension\n• Choosing a time and location where the client feels most comfortable\n• Involving people the client trusts to support them\n• Using visual aids or objects of reference if helpful\n• Allowing sufficient time for the client to express themselves\n• Revisiting the topic on multiple occasions if needed",
       "type": "result",
       "status": "incapacity"
     },
