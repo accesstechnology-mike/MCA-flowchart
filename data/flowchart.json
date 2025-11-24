@@ -3,7 +3,7 @@
   "nodes": {
     "q1": {
       "id": "q1",
-      "text": "Is the client over 16?",
+      "text": "Is the client age 16 or older?",
       "details": "The Mental Capacity Act applies to individuals aged 16 and over.",
       "type": "question",
       "options": [
@@ -105,7 +105,8 @@
     },
     "q9": {
       "id": "q9",
-      "text": "Is the decision or act made in the client's best interest the least restrictive option?",
+      "text": "Is the proposed Best Interest decision/act the least restrictive option?",
+      "details": "A least restrictive option is one that achieves the intended outcome while limiting the client's rights and freedoms as little as possible. Consider if there is a way to achieve the same goal with less interference in the client's life.",
       "type": "question",
       "options": [
         { "label": "Yes", "nextNodeId": "q-review-date" },
@@ -175,7 +176,7 @@
     "r-delay-decision": {
       "id": "r-delay-decision",
       "text": "Action: Consider if it's possible to delay the decision",
-      "details": "In accordance with Section 4 of the Mental Capacity Act (2005), consideration must be given to whether the client may regain capacity and, if so, whether the decision can reasonably be delayed until such time that they are able to participate fully in the decision-making process.\n\n<b>Prioritise the client's future ability to decide for themselves.\n\nConsider if the decision can be safely delayed until capacity returns.\n\nAvoid making permanent decisions unnecessarily.\n\nConsider reassessing capacity at an appropriate time.</b>",
+      "details": "In accordance with Section 4 of the Mental Capacity Act (2005), consideration must be given to whether the client may regain capacity and, if so, whether the decision can reasonably be delayed until such time that they are able to participate fully in the decision-making process.\n\n<b>Consider if the decision can be safely delayed until capacity returns.\n\nAvoid making permanent decisions unnecessarily.\n\nConsider reassessing capacity at an appropriate time.</b>",
       "type": "result",
       "status": "incapacity"
     },

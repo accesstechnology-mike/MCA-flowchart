@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { FlowchartData, Node } from '@/types';
 import flowchartData from '@/data/flowchart.json';
-import { ArrowLeft, RotateCcw, CheckCircle, XCircle, AlertCircle, Calendar, Download, Info, AlertTriangle, ShieldAlert, ArrowRight } from 'lucide-react';
+import { ArrowLeft, RotateCcw, CheckCircle, XCircle, AlertCircle, Calendar, Download, Info, AlertTriangle, ShieldAlert, ArrowRight, HelpCircle } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -279,7 +279,9 @@ export default function DecisionTree() {
                     <XCircle className="text-red-500 shrink-0" size={32} />
                   )
                ) : (
-                  <AlertCircle className="text-blue-500 shrink-0" size={32} />
+                  <div className="bg-blue-600 p-2 rounded-full shrink-0">
+                    <span className="text-white font-bold text-2xl w-8 h-8 flex items-center justify-center">?</span>
+                  </div>
                )}
                
                <div className="space-y-2">
@@ -290,32 +292,31 @@ export default function DecisionTree() {
                     {currentNode.text}
                   </h2>
                   {currentNode.details && (
-                    <div className="text-slate-600 leading-relaxed text-lg space-y-4">
+                    <div className={cn(
+                      "text-slate-600 leading-relaxed text-lg space-y-4",
+                      !isResult ? "bg-blue-50 p-6 rounded-xl border border-blue-100 mt-8" : ""
+                    )}>
+                      {!isResult && (
+                        <div className="flex gap-2 text-blue-700 mb-4 items-center font-semibold">
+                           <Info size={20} />
+                           <span>Guidance</span>
+                        </div>
+                      )}
                       {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' ? (
                         <>
                           {currentNode.details.split('\n\n').filter((para, idx) => {
-                            // For q3, show first paragraph before bullets
-                            if (currentNode.id === 'q3') {
-                              return idx === 0;
-                            } else if (currentNode.id === 'r-consider-alternatives') {
-                              // For r-consider-alternatives, show paragraphs before the bold section with bullets
+                            if (currentNode.id === 'r-consider-alternatives') {
                               const paraText = para.trim();
-                              // Show non-bold paragraphs OR bold paragraphs that don't contain bullets (if any exist separately)
                               return !paraText.includes('•') && paraText.length > 0;
                             } else {
-                              // For other nodes, show all paragraphs that don't start with bullets
                               const paraText = para.trim();
                               return !paraText.startsWith('•') && paraText.length > 0;
                             }
-                          }).map((para, idx) => {
-                             // For r-consider-alternatives, if it's the bold intro line without bullets, clean it up if needed
-                             // But here we just render the paragraph content
-                             return para.trim() && <p key={idx} dangerouslySetInnerHTML={{ __html: para }} />
-                          })}
+                          }).map((para, idx) => (
+                             para.trim() && <p key={idx} dangerouslySetInnerHTML={{ __html: para }} />
+                          ))}
                           
                           {currentNode.id === 'r-consider-alternatives' && currentNode.details.includes('<b>') && (
-                             // Extract the intro text from the bold section if it exists and is separate or part of the bullet block
-                             // We need to find the text inside <b>...</b> that comes before the first bullet
                              (() => {
                                const boldBlock = currentNode.details.split('\n\n').find(p => p.includes('<b>') && p.includes('•'));
                                if (boldBlock) {
@@ -333,9 +334,7 @@ export default function DecisionTree() {
                               const trimmed = line.trim();
                               return trimmed.includes('•');
                             }).map((line, index) => {
-                              // Extract text, removing bullet and any HTML tags
                               let text = line.replace(/^.*•\s*/, '').trim();
-                              // Remove HTML tags
                               text = text.replace(/<\/?b>/g, '').trim();
                               return (
                                 <div key={index} className="flex items-start gap-3">

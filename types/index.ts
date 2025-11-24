@@ -7,6 +7,7 @@ export interface Node {
   id: string;
   text: string;
   details?: string;
+  info?: string;
   type: 'question' | 'result';
   options?: Option[];
   status?: 'capacity' | 'incapacity';
