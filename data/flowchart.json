@@ -96,7 +96,7 @@
     "q8b": {
       "id": "q8b",
       "text": "Is the proposed Best Interest decision/act proportionate to the risks and consequences of not taking this action?",
-      "details": "A proportionate decision/act can be justified because:\n\n• It is understood\n\n• The decision/act is not too heavy handed or blanket\n\n• It is tailored to the individual's specific circumstances and needs\n\n• The level of intervention matches the level of risk or need\n\n• It considers the severity of the consequences of not taking this decision/act\n\n• It considers the likelihood of those consequences occurring",
+      "details": "A proportionate decision/act can be justified because:\n\n• The decision/act is not too heavy handed or blanket\n\n• It is tailored to the individual's specific circumstances and needs\n\n• The level of intervention matches the level of risk or need\n\n• It considers the severity of the consequences of not taking this decision/act\n\n• It considers the likelihood of those consequences occurring",
       "type": "question",
       "options": [
         { "label": "Yes", "nextNodeId": "q9" },
@@ -203,7 +203,7 @@
     "r-consider-alternatives": {
       "id": "r-consider-alternatives",
       "text": "Action: Evaluate Whether Interference is Justified",
-      "details": "The Mental Capacity Act Code of Practice (2013) makes clear that a proportionate response uses the least intrusive type and minimum amount of interference to achieve a specific outcome in the best interests of the person who lacks capacity.\n\n<b>Restrictions and interference should be a last resort, not a first response.\n\nThe proposed Best Interest decision/act must be reconsidered:\n\n• Evaluate whether the interference of the proposed decision/act is justified\n\n• Ensure the approach is well measured and tailored to the individual, not a blanket approach\n\n• Consider whether a less restrictive or less intrusive approach could achieve the same purpose\n\n• If alternatives are unsuitable, there must be clear evidence and justification documented</b>",
+      "details": "The Mental Capacity Act Code of Practice (2013) makes clear that a proportionate response uses the least intrusive type and minimum amount of interference to achieve a specific outcome in the best interests of the person who lacks capacity.\n\nRestrictions and interference should be a last resort, not a first response.\n\n<b>The proposed Best Interest decision/act should be reconsidered:</b>\n\n<b>• Evaluate whether the interference of the proposed decision/act is justified\n\n• Ensure the approach is well measured and tailored to the individual, not a blanket approach\n\n• Consider whether a less restrictive or less intrusive approach could achieve the same purpose\n\n• If alternatives are unsuitable, there must be clear evidence and justification documented</b>",
       "type": "result",
       "status": "incapacity"
     },
