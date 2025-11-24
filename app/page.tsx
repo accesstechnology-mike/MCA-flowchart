@@ -94,9 +94,9 @@ export default function DecisionTree() {
         </div>
 
         {/* Content */}
-        <div className="p-8 md:p-10 space-y-8 min-h-[400px] flex flex-col justify-center">
+        <div className="p-8 md:p-10 min-h-[550px] flex flex-col">
           
-          <div className="space-y-4 animate-in fade-in duration-500">
+          <div className="space-y-4 animate-in fade-in duration-500 flex-grow">
             <div className="flex items-start gap-4">
                {isResult ? (
                   isCapacity ? (
@@ -129,7 +129,7 @@ export default function DecisionTree() {
           </div>
 
           {/* Actions */}
-          <div className="grid gap-4 pt-4">
+          <div className="grid gap-4 pt-8 mt-auto">
             {currentNode.options?.map((option, idx) => (
               <button
                 key={idx}
