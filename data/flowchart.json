@@ -169,7 +169,7 @@
     "r-capacity-confirmed": {
       "id": "r-capacity-confirmed",
       "text": "Outcome: Capacity Confirmed",
-      "details": "The formal capacity assessment has determined that the client has the necessary capacity to make this specific decision.\n\n<b>Guidance for practice:</b>\n\n• The client has the legal right to make this decision, even if professionals or family members disagree or consider it unwise\n• <b>Ongoing Risks:</b> If there are significant risks, consider if a referral for other support or safeguarding is appropriate, independent of their capacity status\n• <b>Coercion or Undue Influence:</b> If you suspect the client is being pressured, the MCA may not apply, but other legal frameworks might. Seek legal advice if coercion is suspected",
+      "details": "The formal capacity assessment has determined that the client has the necessary capacity to make this specific decision.\n\n<b>Guidance for practice:</b>\n\n• The client has the legal right to make this decision, even if professionals or family members disagree or consider it unwise\n• If there are significant risks, consider if a referral for other support or safeguarding is appropriate, independent of their capacity status\n• <b>Coercion or Undue Influence:</b> If you suspect the client is being pressured, the MCA may not apply, but other legal frameworks might. Seek legal advice if coercion is suspected",
       "type": "result",
       "status": "capacity"
     },
