@@ -183,7 +183,7 @@
     "r-hold-meeting": {
       "id": "r-hold-meeting",
       "text": "Action: Hold Best Interest Meeting",
-      "details": "Section 1 of the Mental Capacity Act (2005) states that any act or decision made on behalf of a person who lacks capacity must be done, or made, in their best interests.\n\n<b>In order to ascertain the most appropriate next steps, a Best Interest Meeting should be held, to include the views of all people concerned with the client's care and welfare including family, professionals and deputy (property and affairs).</b>",
+      "details": "Section 1 of the Mental Capacity Act (2005) states that any act or decision made on behalf of a person who lacks capacity must be done, or made, in their best interests.\n\n<b>A Best Interest Meeting should be held to ascertain the most appropriate next steps.</b>\n\nInclude the views of all people concerned with the client's care and welfare:\n\n• Family and friends\n• Professionals involved in care\n• Independent Mental Capacity Advocate (IMCA) if applicable\n• Court Appointed Deputy (Property & Affairs or Health & Welfare)\n• Anyone named by the person to be consulted",
       "type": "result",
       "status": "incapacity"
     },
