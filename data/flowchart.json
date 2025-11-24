@@ -22,7 +22,7 @@
     },
     "q2": {
       "id": "q2",
-      "text": "Are there any concerns about the client's ability to retain, weigh, use and communicate information to make their own decision?",
+      "text": "Are there any concerns about the client's ability to understand, retain, weigh, use or communicate information to make their own decision?",
       "type": "question",
       "options": [
         { "label": "Yes", "nextNodeId": "q3" },
@@ -41,7 +41,7 @@
     },
     "q3b": {
       "id": "q3b",
-      "text": "Is there clear evidence that the client is unable to retain, use, weigh, or communicate relevant information due to an impairment or disturbance of the mind or brain, rather than simply making an unwise decision?",
+      "text": "Is there clear evidence that the client is unable to understand, retain, use, weigh, or communicate relevant information to make a decision due to an impairment or disturbance of the mind or brain, rather than simply making an unwise decision?",
       "type": "question",
       "options": [
         { "label": "Yes", "nextNodeId": "q4" },
@@ -96,7 +96,7 @@
     "q8b": {
       "id": "q8b",
       "text": "Is the proposed Best Interest decision/act proportionate to the risks and consequences of not taking this action?",
-      "details": "A proportionate decision/act means:\n\n• The decision/act is not too heavy handed or blanket\n\n• It is tailored to the individual's specific circumstances and needs\n\n• The level of intervention matches the level of risk or need\n\n• It considers the severity of the consequences of not taking this decision/act\n\n• It considers the likelihood of those consequences occurring",
+      "details": "A proportionate decision/act can be justified because:\n\n• It is understood\n\n• The decision/act is not too heavy handed or blanket\n\n• It is tailored to the individual's specific circumstances and needs\n\n• The level of intervention matches the level of risk or need\n\n• It considers the severity of the consequences of not taking this decision/act\n\n• It considers the likelihood of those consequences occurring",
       "type": "question",
       "options": [
         { "label": "Yes", "nextNodeId": "q9" },
