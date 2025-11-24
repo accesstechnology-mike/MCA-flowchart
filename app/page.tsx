@@ -308,10 +308,10 @@ export default function DecisionTree() {
                            <span>Guidance</span>
                         </div>
                       )}
-                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' ? (
+                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' ? (
                         <>
                           {currentNode.details.split('\n\n').filter((para, idx) => {
-                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed') {
+                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision') {
                               const paraText = para.trim();
                               return !paraText.includes('•') && paraText.length > 0;
                             } else {
@@ -322,7 +322,7 @@ export default function DecisionTree() {
                              para.trim() && <p key={idx} dangerouslySetInnerHTML={{ __html: para }} />
                           ))}
                           
-                          {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed') && currentNode.details.includes('<b>') && (
+                          {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision') && currentNode.details.includes('<b>') && (
                              (() => {
                                const boldBlock = currentNode.details.split('\n\n').find(p => p.includes('<b>') && p.includes('•'));
                                if (boldBlock) {

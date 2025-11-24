@@ -106,7 +106,7 @@
     "q9": {
       "id": "q9",
       "text": "Is the proposed Best Interest decision/act the least restrictive option?",
-      "details": "A least restrictive option is one that achieves the intended outcome while limiting the client's rights and freedoms as little as possible. Consider if there is a way to achieve the same goal with less interference in the client's life.",
+      "details": "A least restrictive option is one that achieves the intended outcome while interfering with the client's rights and freedoms as little as possible.",
       "type": "question",
       "options": [
         { "label": "Yes", "nextNodeId": "q-review-date" },
@@ -176,7 +176,7 @@
     "r-delay-decision": {
       "id": "r-delay-decision",
       "text": "Action: Consider if it's possible to delay the decision",
-      "details": "In accordance with Section 4 of the Mental Capacity Act (2005), consideration must be given to whether the client may regain capacity and, if so, whether the decision can reasonably be delayed until such time that they are able to participate fully in the decision-making process.\n\n<b>Consider if the decision can be safely delayed until capacity returns.\n\nAvoid making permanent decisions unnecessarily.\n\nConsider reassessing capacity at an appropriate time.</b>",
+      "details": "In accordance with Section 4 of the Mental Capacity Act (2005), consideration must be given to whether the client may regain capacity and, if so, whether the decision can reasonably be delayed until such time that they are able to participate fully in the decision-making process.\n\n<b>Consider:\n\n• If the decision can be safely delayed until capacity returns\n\n• Avoiding making permanent decisions unnecessarily\n\n• Reassessing capacity at an appropriate time</b>",
       "type": "result",
       "status": "incapacity"
     },
