@@ -255,7 +255,7 @@ export default function DecisionTree() {
 
       {/* Main content */}
       <div className="flex-1 flex items-start justify-center px-4 py-8 md:py-12">
-        <div className="w-full max-w-2xl bg-white rounded-lg shadow-sm border border-slate-200 animate-fadeIn">
+        <div className="w-full max-w-[840px] bg-white rounded-lg shadow-sm border border-slate-200 animate-fadeIn">
           
           {/* Content */}
           <div className="p-6 md:p-8 min-h-[400px] flex flex-col">
@@ -364,10 +364,10 @@ export default function DecisionTree() {
                             return elements;
                           })()}
                         </>
-                      ) : currentNode.id === 'q2b' || currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' || currentNode.id === 'r-documentation-needed' || currentNode.id === 'r-define-decision' ? (
+                      ) : currentNode.id === 'q2b' || currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' || currentNode.id === 'r-documentation-needed' || currentNode.id === 'r-define-decision' || currentNode.id === 'r-support-needed' ? (
                         <>
                           {currentNode.details.split('\n\n').filter((para) => {
-                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' || currentNode.id === 'r-documentation-needed') {
+                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' || currentNode.id === 'r-documentation-needed' || currentNode.id === 'r-support-needed') {
                               return !para.trim().includes('•') && para.trim().length > 0;
                             } else {
                               return !para.trim().startsWith('•') && para.trim().length > 0;

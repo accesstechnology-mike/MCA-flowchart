@@ -52,7 +52,7 @@ export default function SummaryModal({ isOpen, onClose, pathItems, outcome, emai
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
       <div 
-        className="bg-white w-full max-w-2xl rounded-lg shadow-xl flex flex-col max-h-[90vh] border border-slate-200"
+        className="bg-white w-full max-w-[840px] rounded-lg shadow-xl flex flex-col max-h-[90vh] border border-slate-200"
         role="dialog"
         aria-modal="true"
       >
