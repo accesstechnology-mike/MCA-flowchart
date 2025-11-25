@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { FlowchartData, Node } from '@/types';
 import flowchartData from '@/data/flowchart.json';
-import { ArrowLeft, RotateCcw, CheckCircle, XCircle, AlertCircle, Calendar, Download, Info, AlertTriangle, ShieldAlert, ArrowRight, HelpCircle, Star, Copy, Check, FileText, ChevronRight } from 'lucide-react';
+import { ArrowLeft, RotateCcw, CheckCircle, XCircle, AlertCircle, Calendar, Download, Info, AlertTriangle, ShieldAlert, ArrowRight, Star, FileText, ChevronRight } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import SummaryModal from './components/SummaryModal';
@@ -20,50 +20,29 @@ export default function DecisionTree() {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isSummaryOpen, setIsSummaryOpen] = useState(false);
 
-  // Initialize from history state on mount
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    
-    // Check if there's existing state in history
     const existingState = window.history.state;
-    
     if (existingState && existingState.node) {
-      // Restore from history state
       setCurrentNodeId(existingState.node);
-      if (existingState.history) {
-        setHistory(existingState.history);
-      }
-      if (existingState.showWelcome !== undefined) {
-        setShowWelcome(existingState.showWelcome);
-      } else {
-        setShowWelcome(false);
-      }
+      if (existingState.history) setHistory(existingState.history);
+      if (existingState.showWelcome !== undefined) setShowWelcome(existingState.showWelcome);
+      else setShowWelcome(false);
     } else {
-      // Initialize with default state
-      const initialState = {
-        node: data.startNodeId,
-        history: [],
-        showWelcome: true,
-      };
+      const initialState = { node: data.startNodeId, history: [], showWelcome: true };
       window.history.replaceState(initialState, '', window.location.pathname);
     }
-    
     setIsInitialized(true);
   }, [data.startNodeId]);
 
-  // Update history state when navigation changes (but not on initial mount)
   useEffect(() => {
     if (!isInitialized || typeof window === 'undefined') return;
-    
     const state = { node: currentNodeId, history, showWelcome };
-    // Use clean URL without query parameters
     window.history.pushState(state, '', window.location.pathname);
   }, [currentNodeId, history, showWelcome, isInitialized]);
 
-  // Handle browser back/forward navigation
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    
     const handlePopState = (event: PopStateEvent) => {
       if (event.state) {
         const { node, history: hist, showWelcome: welcome } = event.state;
@@ -71,27 +50,21 @@ export default function DecisionTree() {
         if (hist) setHistory(hist);
         if (welcome !== undefined) setShowWelcome(welcome);
       } else {
-        // No state found, reset to initial state
         setCurrentNodeId(data.startNodeId);
         setHistory([]);
         setShowWelcome(true);
       }
     };
-
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, [data.startNodeId]);
 
   const handleOptionClick = (nextNodeId: string) => {
-    const newHistory = [...history, currentNodeId];
-    setHistory(newHistory);
+    setHistory([...history, currentNodeId]);
     setCurrentNodeId(nextNodeId);
   };
 
-  const handleBack = () => {
-    // Always use browser's back button - it will go back through history including welcome page
-    window.history.back();
-  };
+  const handleBack = () => window.history.back();
 
   const handleRestart = () => {
     setHistory([]);
@@ -100,12 +73,7 @@ export default function DecisionTree() {
   };
 
   const handleStartAssessment = () => {
-    // Push a new history entry when starting assessment so back button can return to welcome
-    const assessmentState = {
-      node: data.startNodeId,
-      history: [],
-      showWelcome: false,
-    };
+    const assessmentState = { node: data.startNodeId, history: [], showWelcome: false };
     window.history.pushState(assessmentState, '', window.location.pathname);
     setShowWelcome(false);
     setHistory([]);
@@ -117,7 +85,6 @@ export default function DecisionTree() {
       const node = data.nodes[nodeId];
       const nextNodeId = index < history.length - 1 ? history[index + 1] : currentNodeId;
       const selectedOption = node.options?.find(opt => opt.nextNodeId === nextNodeId);
-      
       return {
         question: node.text,
         answer: selectedOption?.label || 'Unknown',
@@ -126,112 +93,88 @@ export default function DecisionTree() {
     });
   };
 
-  // Show welcome screen first
+  // Welcome screen
   if (showWelcome) {
     return (
-      <main className="min-h-screen bg-[#FAF8F5] selection:bg-[#C9A962]/30">
-        {/* Subtle background pattern */}
-        <div className="fixed inset-0 opacity-[0.02] pointer-events-none" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-        
-        <div className="relative max-w-6xl mx-auto px-6 py-12 md:py-16 lg:py-24">
-          
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-            {/* Left Column: Brand, Intro, CTA */}
-            <div className="space-y-10 md:space-y-12 animate-fade-up">
-              {/* Header/Brand */}
-              <div className="flex items-center gap-4">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-[#C9A962]/20 rounded-xl blur-xl" />
-                  <img 
-                    src="/android-chrome-192x192.png" 
-                    alt="access: technology logo" 
-                    className="relative h-12 w-12 md:h-14 md:w-14 object-contain shrink-0 rounded-xl shadow-luxury"
-                  />
-                </div>
+      <main className="min-h-screen bg-white">
+        {/* Nav bar */}
+        <nav className="border-b border-slate-200">
+          <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <img 
+                src="/android-chrome-192x192.png" 
+                alt="access: technology" 
+                className="h-8 w-8 object-contain"
+              />
+              <span className="text-lg font-semibold text-slate-900">access: technology</span>
+            </div>
+            <a 
+              href="/MCA%20Decision%20Making%20Pathway.pdf"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-slate-600 hover:text-slate-900 flex items-center gap-2 transition-colors"
+            >
+              <Download size={16} />
+              <span className="hidden sm:inline">Download PDF</span>
+            </a>
+          </div>
+        </nav>
+
+        <div className="max-w-6xl mx-auto px-6">
+          {/* Hero */}
+          <div className="py-16 md:py-24 lg:py-32 animate-fadeIn">
+            <div className="max-w-3xl">
+              <p className="text-sm font-medium text-blue-600 tracking-wide uppercase mb-4">
+                Decision Making Framework
+              </p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight tracking-tight mb-6">
+                Mental Capacity Act<br />
+                <span className="text-slate-400">Pathway</span>
+              </h1>
+              <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-10 max-w-2xl">
+                A structured framework supporting professionals in applying the core principles of the Mental Capacity Act within everyday practice—ensuring reflective, lawful, and ethically robust decision-making.
+              </p>
+              <button
+                onClick={handleStartAssessment}
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-slate-900 text-white text-base font-medium rounded-lg hover:bg-slate-800 transition-colors"
+              >
+                Begin Assessment
+                <ArrowRight size={18} />
+              </button>
+            </div>
+          </div>
+
+          {/* Info cards */}
+          <div className="grid md:grid-cols-2 gap-6 pb-16 md:pb-24 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
+            <div className="border border-amber-200 bg-amber-50 rounded-lg p-6">
+              <div className="flex items-start gap-4">
+                <AlertTriangle className="text-amber-600 shrink-0 mt-0.5" size={20} />
                 <div>
-                  <h2 className="font-display text-xl md:text-2xl text-[#1C1C1E] tracking-wide">
-                    access: technology
-                  </h2>
-                  <p className="text-[#8E8E93] text-sm tracking-wider uppercase">
-                    Professional Standards
+                  <h3 className="font-semibold text-slate-900 mb-2">Important Notice</h3>
+                  <p className="text-sm text-slate-700 leading-relaxed">
+                    This tool is intended to complement, not replace, professional judgement. It must not be used as a substitute for legal advice or formal legal procedures. Where there is uncertainty, complexity, or potential disagreement, professionals should seek independent legal advice.
                   </p>
-                </div>
-              </div>
-
-              <div className="space-y-8">
-                <div className="space-y-4">
-                  <p className="text-[#C9A962] text-sm font-medium tracking-[0.2em] uppercase">
-                    Decision Making Framework
-                  </p>
-                  <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-[#1C1C1E] tracking-tight leading-[1.05]">
-                    Mental Capacity<br />
-                    <span className="text-gradient-gold">Act Pathway</span>
-                  </h1>
-                </div>
-                
-                <div className="text-lg text-[#3A3A3C] leading-relaxed max-w-xl">
-                  <p>
-                    A structured framework designed to support professionals in applying the core principles of the Mental Capacity Act within everyday practice—ensuring reflective, lawful, and ethically robust decision-making.
-                  </p>
-                </div>
-
-                <div className="pt-6 flex flex-col sm:flex-row gap-4">
-                  <button
-                    onClick={handleStartAssessment}
-                    className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#1C1C1E] text-white rounded-xl hover:bg-[#2C2C2E] transition-all duration-300 shadow-luxury hover-lift font-medium text-lg tracking-wide"
-                  >
-                    Begin Assessment
-                    <ChevronRight className="group-hover:translate-x-1 transition-transform duration-300" size={20} />
-                  </button>
-                  
-                  <a 
-                    href="/MCA%20Decision%20Making%20Pathway.pdf"
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent text-[#1C1C1E] border-2 border-[#1C1C1E]/10 rounded-xl hover:border-[#C9A962] hover:text-[#C9A962] transition-all duration-300 font-medium text-lg tracking-wide"
-                  >
-                    <Download size={18} />
-                    Download PDF
-                  </a>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Important Notices */}
-            <div className="space-y-6 lg:pt-16 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-              <div className="bg-white rounded-2xl p-8 md:p-10 shadow-luxury border border-[#C9A962]/10 space-y-5">
-                <div className="flex items-center gap-3 text-[#B8963E]">
-                  <div className="p-2 bg-[#C9A962]/10 rounded-lg">
-                    <AlertTriangle size={22} />
-                  </div>
-                  <h3 className="font-display text-xl tracking-wide">Important Notice</h3>
+            <div className="border border-red-200 bg-red-50 rounded-lg p-6">
+              <div className="flex items-start gap-4">
+                <ShieldAlert className="text-red-600 shrink-0 mt-0.5" size={20} />
+                <div>
+                  <h3 className="font-semibold text-slate-900 mb-2">Safeguarding Warning</h3>
+                  <p className="text-sm text-slate-700 leading-relaxed">
+                    Any concerns regarding risk of harm, abuse, neglect, or exploitation must be acted upon immediately and managed in accordance with relevant safeguarding legislation, statutory guidance, and local procedures.
+                  </p>
                 </div>
-                <p className="text-[#3A3A3C] leading-relaxed">
-                  This tool is intended to complement, not replace, professional judgement. It must not be used as a substitute for legal advice or formal legal procedures. Where there is uncertainty, complexity, or potential disagreement, professionals should seek independent legal advice.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-[#9B2C2C]/5 to-[#9B2C2C]/10 rounded-2xl p-8 md:p-10 border border-[#9B2C2C]/10 space-y-5">
-                <div className="flex items-center gap-3 text-[#9B2C2C]">
-                  <div className="p-2 bg-[#9B2C2C]/10 rounded-lg">
-                    <ShieldAlert size={22} />
-                  </div>
-                  <h3 className="font-display text-xl tracking-wide">Safeguarding Warning</h3>
-                </div>
-                <p className="text-[#3A3A3C] leading-relaxed">
-                  Any concerns regarding risk of harm, abuse, neglect, or exploitation must be acted upon immediately and managed in accordance with relevant safeguarding legislation, statutory guidance, and local procedures.
-                </p>
-              </div>
-
-              <div className="flex items-center justify-center gap-3 text-[#8E8E93] text-sm py-6">
-                <span className="h-px w-8 bg-[#8E8E93]/30" />
-                <span className="tracking-wider">Mental Capacity Act (2005)</span>
-                <span className="h-px w-8 bg-[#8E8E93]/30" />
               </div>
             </div>
+          </div>
+
+          {/* Footer */}
+          <div className="border-t border-slate-200 py-6 text-center text-sm text-slate-500">
+            Mental Capacity Act (2005) · <a href="https://accesstechnology.co.uk" target="_blank" rel="noopener noreferrer" className="hover:text-slate-700 transition-colors">access: technology</a>
           </div>
         </div>
       </main>
@@ -242,15 +185,15 @@ export default function DecisionTree() {
 
   if (!currentNode) {
     return (
-      <div className="min-h-screen bg-[#FAF8F5] flex items-center justify-center p-6">
-        <div className="text-center p-10 bg-white rounded-2xl shadow-luxury-lg border border-[#C9A962]/10 max-w-md animate-fade-up">
-          <h2 className="font-display text-2xl text-[#9B2C2C] mb-4">Assessment Error</h2>
-          <p className="text-[#3A3A3C] mb-8 leading-relaxed">The current step could not be found. This may happen if the assessment structure has been updated.</p>
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+        <div className="text-center p-8 bg-white rounded-lg shadow-sm border border-slate-200 max-w-md animate-fadeIn">
+          <h2 className="text-xl font-semibold text-red-600 mb-3">Assessment Error</h2>
+          <p className="text-slate-600 mb-6">The current step could not be found.</p>
           <button 
             onClick={handleRestart}
-            className="px-8 py-4 bg-[#1C1C1E] text-white rounded-xl hover:bg-[#2C2C2E] transition-all duration-300 font-medium flex items-center justify-center gap-3 w-full shadow-luxury hover-lift"
+            className="px-5 py-2.5 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors font-medium flex items-center justify-center gap-2 w-full"
           >
-            <RotateCcw size={18} /> Restart Assessment
+            <RotateCcw size={16} /> Restart Assessment
           </button>
         </div>
       </div>
@@ -268,109 +211,103 @@ export default function DecisionTree() {
   ];
 
   const hiddenStatusNodes = ['q1', 'q-safeguarding', 'r-under-16', 'r-safeguarding'];
-  
   const isLackingCapacity = lackingCapacityNodes.includes(currentNodeId);
   const shouldShowStatus = !hiddenStatusNodes.includes(currentNodeId);
 
   return (
-    <main className="min-h-screen bg-[#FAF8F5] flex flex-col items-center justify-center p-4 md:p-6">
-      {/* Subtle background pattern */}
-      <div className="fixed inset-0 opacity-[0.02] pointer-events-none" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-      }} />
-      
-      <div className="relative max-w-2xl w-full bg-white rounded-2xl shadow-luxury-lg overflow-hidden border border-[#C9A962]/10 animate-fade-up">
-        
-        {/* Header */}
-        <div className="bg-luxury-gradient px-5 md:px-8 py-4 md:py-5 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3 md:gap-4 min-w-0 flex-1">
+    <main className="min-h-screen bg-slate-50 flex flex-col">
+      {/* Header */}
+      <header className="bg-slate-900 border-b border-slate-800">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
             <img 
               src="/android-chrome-192x192.png" 
-              alt="access: technology logo" 
-              className="h-8 w-8 md:h-10 md:w-10 object-contain shrink-0 rounded-lg"
+              alt="access: technology" 
+              className="h-7 w-7 object-contain"
             />
-            <div className="min-w-0">
-              <h1 className="font-display text-lg md:text-xl text-white tracking-wide truncate">
-                access: technology
-              </h1>
-              <p className="text-[#8E8E93] text-xs md:text-sm tracking-wide hidden sm:block">MCA Decision Making Pathway</p>
+            <div className="hidden sm:block">
+              <span className="text-white font-medium">access: technology</span>
+              <span className="text-slate-500 mx-2">·</span>
+              <span className="text-slate-400 text-sm">MCA Decision Making Pathway</span>
             </div>
           </div>
-          <div className="flex items-center gap-3 md:gap-5 shrink-0">
-            {!showWelcome && (
-              <>
-                <button 
-                  onClick={handleBack}
-                  className="text-[#8E8E93] hover:text-white transition-colors duration-300 flex items-center text-sm gap-2"
-                  title="Back"
-                >
-                  <ArrowLeft size={16} /> <span className="hidden sm:inline tracking-wide">Back</span>
-                </button>
-                <button 
-                  onClick={handleRestart}
-                  className="text-[#8E8E93] hover:text-white transition-colors duration-300 flex items-center text-sm gap-2"
-                  title="Restart Assessment"
-                >
-                  <RotateCcw size={16} /> <span className="hidden sm:inline tracking-wide">Restart</span>
-                </button>
-              </>
-            )}
+          <div className="flex items-center gap-1">
+            <button 
+              onClick={handleBack}
+              className="text-slate-400 hover:text-white px-3 py-2 rounded-md hover:bg-slate-800 transition-colors flex items-center gap-2 text-sm"
+            >
+              <ArrowLeft size={16} /> <span className="hidden sm:inline">Back</span>
+            </button>
+            <button 
+              onClick={handleRestart}
+              className="text-slate-400 hover:text-white px-3 py-2 rounded-md hover:bg-slate-800 transition-colors flex items-center gap-2 text-sm"
+            >
+              <RotateCcw size={16} /> <span className="hidden sm:inline">Restart</span>
+            </button>
           </div>
         </div>
+      </header>
 
-        {/* Content */}
-        <div className="p-8 md:p-12 min-h-[440px] flex flex-col">
+      {/* Main content */}
+      <div className="flex-1 flex items-start justify-center px-4 py-8 md:py-12">
+        <div className="w-full max-w-2xl bg-white rounded-lg shadow-sm border border-slate-200 animate-fadeIn">
           
-          <div className="space-y-5 flex-grow">
-            <div className="flex items-start gap-5">
-               {isResult ? (
+          {/* Content */}
+          <div className="p-6 md:p-8 min-h-[400px] flex flex-col">
+            <div className="flex-1">
+              <div className="flex items-start gap-4">
+                {isResult ? (
                   currentNode.id === 'r-schedule-review' ? (
-                    <div className="p-3 bg-[#9B2C2C]/10 rounded-xl shrink-0">
-                      <Calendar className="text-[#9B2C2C]" size={28} />
+                    <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+                      <Calendar className="text-red-600" size={20} />
                     </div>
                   ) : currentNode.id === 'r-process-complete' ? (
-                    <div className="p-3 bg-[#C9A962]/10 rounded-xl shrink-0">
-                      <Star className="text-[#C9A962] fill-[#C9A962]" size={28} />
+                    <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
+                      <Star className="text-amber-600 fill-amber-600" size={20} />
                     </div>
                   ) : isCapacity ? (
-                    <div className="p-3 bg-[#2D6A4F]/10 rounded-xl shrink-0">
-                      <CheckCircle className="text-[#2D6A4F]" size={28} />
+                    <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+                      <CheckCircle className="text-emerald-600" size={20} />
                     </div>
                   ) : (
                     currentNode.text.startsWith('Action:') || currentNode.text.startsWith('Action Required:') ? (
-                      <div className="bg-[#9B2C2C] p-3 rounded-xl shrink-0">
-                        <ArrowRight className="text-white" size={24} />
+                      <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center shrink-0">
+                        <ArrowRight className="text-white" size={20} />
                       </div>
                     ) : (
-                      <div className="p-3 bg-[#9B2C2C]/10 rounded-xl shrink-0">
-                        <XCircle className="text-[#9B2C2C]" size={28} />
+                      <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+                        <XCircle className="text-red-600" size={20} />
                       </div>
                     )
                   )
-               ) : (
-                  <div className="bg-[#1C1C1E] p-3 rounded-xl shrink-0">
-                    <span className="text-white font-display text-2xl w-7 h-7 flex items-center justify-center">?</span>
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
+                    <span className="text-white font-bold text-lg">?</span>
                   </div>
-               )}
-               
-               <div className="space-y-3 flex-1">
+                )}
+                
+                <div className="flex-1 min-w-0">
                   <h2 className={cn(
-                    "font-display text-2xl md:text-3xl leading-tight tracking-wide",
-                    isResult ? (currentNode.id === 'r-process-complete' ? "text-[#B8963E]" : isCapacity ? "text-[#2D6A4F]" : "text-[#9B2C2C]") : "text-[#1C1C1E]"
+                    "text-xl md:text-2xl font-semibold leading-snug",
+                    isResult 
+                      ? (currentNode.id === 'r-process-complete' ? "text-amber-700" : isCapacity ? "text-emerald-700" : "text-red-700") 
+                      : "text-slate-900"
                   )}>
                     {currentNode.text}
                   </h2>
+                  
                   {currentNode.details && (
                     <div className={cn(
-                      "text-[#3A3A3C] leading-relaxed text-base md:text-lg space-y-4",
-                      !isResult ? "bg-[#FAF8F5] p-6 md:p-8 rounded-xl border border-[#C9A962]/10 mt-6" : "mt-4"
+                      "mt-4 text-slate-600 leading-relaxed space-y-4",
+                      !isResult && "bg-slate-50 border border-slate-200 rounded-lg p-5"
                     )}>
                       {!isResult && (
-                        <div className="flex gap-2 text-[#B8963E] mb-5 items-center font-medium tracking-wide">
-                           <Info size={18} />
-                           <span>Guidance</span>
+                        <div className="flex items-center gap-2 text-blue-600 text-sm font-medium mb-3">
+                          <Info size={16} />
+                          <span>Guidance</span>
                         </div>
                       )}
+                      
                       {currentNode.id === 'r-hold-meeting' && currentNode.details ? (
                         <>
                           {(() => {
@@ -381,20 +318,17 @@ export default function DecisionTree() {
                             sections.forEach((section, idx) => {
                               const trimmed = section.trim();
                               if (trimmed.startsWith('•') || trimmed.includes('\n•')) {
-                                // Collect bullet lines
                                 const bulletLines = trimmed.split('\n').filter(l => l.trim().startsWith('•'));
                                 currentBullets.push(...bulletLines);
                               } else if (trimmed.length > 0) {
-                                // Render any collected bullets first
                                 if (currentBullets.length > 0) {
                                   elements.push(
-                                    <div key={`bullets-${idx}`} className="space-y-3 mb-5">
+                                    <div key={`bullets-${idx}`} className="space-y-2 mb-4">
                                       {currentBullets.map((line, bIdx) => {
-                                        let text = line.replace(/^.*•\s*/, '').trim();
-                                        text = text.replace(/<\/?b>/g, '').trim();
+                                        let text = line.replace(/^.*•\s*/, '').trim().replace(/<\/?b>/g, '');
                                         return (
-                                          <div key={bIdx} className="flex items-start gap-3">
-                                            <CheckCircle className="text-[#2D6A4F] shrink-0 mt-0.5" size={18} />
+                                          <div key={bIdx} className="flex items-start gap-3 text-sm">
+                                            <CheckCircle className="text-emerald-500 shrink-0 mt-0.5" size={16} />
                                             <span>{text}</span>
                                           </div>
                                         );
@@ -403,21 +337,18 @@ export default function DecisionTree() {
                                   );
                                   currentBullets = [];
                                 }
-                                // Render the text section
-                                elements.push(<p key={idx} dangerouslySetInnerHTML={{ __html: trimmed }} />);
+                                elements.push(<p key={idx} className="text-sm" dangerouslySetInnerHTML={{ __html: trimmed }} />);
                               }
                             });
                             
-                            // Render any remaining bullets
                             if (currentBullets.length > 0) {
                               elements.push(
-                                <div key="bullets-final" className="space-y-3">
+                                <div key="bullets-final" className="space-y-2">
                                   {currentBullets.map((line, bIdx) => {
-                                    let text = line.replace(/^.*•\s*/, '').trim();
-                                    text = text.replace(/<\/?b>/g, '').trim();
+                                    let text = line.replace(/^.*•\s*/, '').trim().replace(/<\/?b>/g, '');
                                     return (
-                                      <div key={bIdx} className="flex items-start gap-3">
-                                        <CheckCircle className="text-[#2D6A4F] shrink-0 mt-0.5" size={18} />
+                                      <div key={bIdx} className="flex items-start gap-3 text-sm">
+                                        <CheckCircle className="text-emerald-500 shrink-0 mt-0.5" size={16} />
                                         <span>{text}</span>
                                       </div>
                                     );
@@ -425,53 +356,45 @@ export default function DecisionTree() {
                                 </div>
                               );
                             }
-                            
                             return elements;
                           })()}
                         </>
                       ) : currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' || currentNode.id === 'r-documentation-needed' ? (
                         <>
-                          {currentNode.details.split('\n\n').filter((para, idx) => {
+                          {currentNode.details.split('\n\n').filter((para) => {
                             if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' || currentNode.id === 'r-documentation-needed') {
-                              const paraText = para.trim();
-                              return !paraText.includes('•') && paraText.length > 0;
+                              return !para.trim().includes('•') && para.trim().length > 0;
                             } else {
-                              const paraText = para.trim();
-                              return !paraText.startsWith('•') && paraText.length > 0;
+                              return !para.trim().startsWith('•') && para.trim().length > 0;
                             }
                           }).map((para, idx) => (
-                             para.trim() && <p key={idx} dangerouslySetInnerHTML={{ __html: para }} />
+                            para.trim() && <p key={idx} className="text-sm" dangerouslySetInnerHTML={{ __html: para }} />
                           ))}
                           
                           {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' || currentNode.id === 'r-documentation-needed') && currentNode.details.includes('<b>') && (
-                             (() => {
-                               const boldBlocks = currentNode.details.split('\n\n').filter(p => p.includes('<b>'));
-                               if (boldBlocks.length > 0) {
-                                 return boldBlocks.map((block, idx) => {
-                                    if (block.includes('•') && currentNode.id !== 'r-dol-warning') {
-                                      // For nodes where bold is a header for bullets in the same block (legacy structure)
-                                      const introMatch = block.match(/<b>([^•]+):/);
-                                      if (introMatch) {
-                                        return <p key={idx} className="font-semibold mb-2">{introMatch[1].replace(/<\/?b>/g, '').trim()}:</p>;
-                                      }
+                            (() => {
+                              const boldBlocks = currentNode.details.split('\n\n').filter(p => p.includes('<b>'));
+                              if (boldBlocks.length > 0) {
+                                return boldBlocks.map((block, idx) => {
+                                  if (block.includes('•') && currentNode.id !== 'r-dol-warning') {
+                                    const introMatch = block.match(/<b>([^•]+):/);
+                                    if (introMatch) {
+                                      return <p key={idx} className="font-semibold text-sm mb-2">{introMatch[1].replace(/<\/?b>/g, '').trim()}:</p>;
                                     }
-                                    return null;
-                                 });
-                               }
-                               return null;
-                             })()
+                                  }
+                                  return null;
+                                });
+                              }
+                              return null;
+                            })()
                           )}
 
-                          <div className="space-y-3">
-                            {currentNode.details.split('\n').filter(line => {
-                              const trimmed = line.trim();
-                              return trimmed.includes('•');
-                            }).map((line, index) => {
-                              let text = line.replace(/^.*•\s*/, '').trim();
-                              text = text.replace(/<\/?b>/g, '').trim();
+                          <div className="space-y-2">
+                            {currentNode.details.split('\n').filter(line => line.trim().includes('•')).map((line, index) => {
+                              let text = line.replace(/^.*•\s*/, '').trim().replace(/<\/?b>/g, '');
                               return (
-                                <div key={index} className="flex items-start gap-3">
-                                  <CheckCircle className="text-[#2D6A4F] shrink-0 mt-0.5" size={18} />
+                                <div key={index} className="flex items-start gap-3 text-sm">
+                                  <CheckCircle className="text-emerald-500 shrink-0 mt-0.5" size={16} />
                                   <span>{text}</span>
                                 </div>
                               );
@@ -480,118 +403,111 @@ export default function DecisionTree() {
                         </>
                       ) : (
                         currentNode.details.split('\n\n').map((paragraph, index) => (
-                          <p key={index} dangerouslySetInnerHTML={{ __html: paragraph }} />
+                          <p key={index} className="text-sm" dangerouslySetInnerHTML={{ __html: paragraph }} />
                         ))
                       )}
                     </div>
                   )}
-               </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="mt-8 space-y-3">
+              {currentNode.options?.map((option, idx) => {
+                const isYes = option.label === 'Yes' || option.label === "It's possible";
+                const isNo = option.label === 'No' || option.label === "It's unlikely";
+                
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => handleOptionClick(option.nextNodeId)}
+                    className={cn(
+                      "group w-full text-left px-5 py-4 rounded-lg border transition-all flex items-center justify-between font-medium",
+                      isYes 
+                        ? "border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 text-slate-900 hover:text-emerald-700" 
+                        : isNo 
+                          ? "border-slate-200 hover:border-red-500 hover:bg-red-50 text-slate-900 hover:text-red-700"
+                          : "border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-slate-900 hover:text-blue-700"
+                    )}
+                  >
+                    <span className="flex items-center gap-3">
+                      {isYes && <CheckCircle className="w-5 h-5 text-emerald-500" />}
+                      {isNo && <XCircle className="w-5 h-5 text-red-500" />}
+                      {option.label}
+                    </span>
+                    <ChevronRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity text-slate-400" />
+                  </button>
+                );
+              })}
+
+              {isResult && (
+                <>
+                  <div className="pt-6 space-y-3">
+                    <button
+                      onClick={() => setIsSummaryOpen(true)}
+                      className="w-full flex items-center justify-center gap-2 px-5 py-3.5 bg-white border border-slate-200 text-slate-700 rounded-lg hover:bg-slate-50 hover:border-slate-300 transition-colors font-medium"
+                    >
+                      <FileText size={18} /> 
+                      View Assessment Summary
+                    </button>
+
+                    <button
+                      onClick={handleRestart}
+                      className="w-full flex items-center justify-center gap-2 px-5 py-3.5 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors font-medium"
+                    >
+                      <RotateCcw size={18} /> Start New Assessment
+                    </button>
+                  </div>
+
+                  <SummaryModal 
+                    isOpen={isSummaryOpen}
+                    onClose={() => setIsSummaryOpen(false)}
+                    pathItems={getPathSummary()}
+                    outcome={currentNode.text}
+                    emailTemplate={currentNode.emailTemplate}
+                    status={isLackingCapacity ? 'incapacity' : 'capacity'}
+                  />
+                </>
+              )}
             </div>
           </div>
 
-          {/* Actions */}
-          <div className="grid gap-4 pt-10 mt-auto">
-            {currentNode.options?.map((option, idx) => {
-              const isYes = option.label === 'Yes' || option.label === "It's possible";
-              const isNo = option.label === 'No' || option.label === "It's unlikely";
-              
-              return (
-                <button
-                  key={idx}
-                  onClick={() => handleOptionClick(option.nextNodeId)}
-                  className={cn(
-                    "group w-full text-left px-6 py-5 rounded-xl border-2 transition-all duration-300 font-medium text-lg flex items-center justify-between hover-lift",
-                    isYes 
-                      ? "border-[#2D6A4F]/20 hover:border-[#2D6A4F] hover:bg-[#2D6A4F]/5 text-[#1C1C1E] hover:text-[#2D6A4F]" 
-                      : isNo 
-                        ? "border-[#9B2C2C]/20 hover:border-[#9B2C2C] hover:bg-[#9B2C2C]/5 text-[#1C1C1E] hover:text-[#9B2C2C]"
-                        : "border-[#C9A962]/20 hover:border-[#C9A962] hover:bg-[#C9A962]/5 text-[#1C1C1E] hover:text-[#B8963E]"
-                  )}
-                >
-                  <span className="flex items-center gap-4">
-                    {isYes && <CheckCircle className="w-5 h-5 text-[#2D6A4F]" />}
-                    {isNo && <XCircle className="w-5 h-5 text-[#9B2C2C]" />}
-                    {option.label}
-                  </span>
-                  <ChevronRight className="opacity-0 group-hover:opacity-100 transform translate-x-[-8px] group-hover:translate-x-0 transition-all duration-300" size={20} />
-                </button>
-              );
-            })}
+          {/* Status bar */}
+          {shouldShowStatus && (
+            <div className={cn(
+              "px-6 py-3 text-sm font-medium flex items-center justify-center gap-2 border-t",
+              isLackingCapacity 
+                ? "bg-red-50 text-red-700 border-red-100" 
+                : "bg-emerald-50 text-emerald-700 border-emerald-100"
+            )}>
+              {isLackingCapacity ? (
+                <>
+                  <AlertCircle size={16} />
+                  <span>Current Status: Client Lacks Capacity (Best Interests Framework)</span>
+                </>
+              ) : (
+                <>
+                  <Info size={16} />
+                  <span>Current Status: Presumption of Capacity Applies</span>
+                </>
+              )}
+            </div>
+          )}
 
-            {isResult && (
-              <>
-                <button
-                  onClick={() => setIsSummaryOpen(true)}
-                  className="mt-10 w-full flex items-center justify-center gap-3 px-6 py-5 bg-white border-2 border-[#1C1C1E]/10 text-[#1C1C1E] rounded-xl hover:border-[#C9A962] hover:text-[#B8963E] transition-all duration-300 font-medium text-lg group hover-lift"
-                >
-                  <FileText className="group-hover:scale-110 transition-transform duration-300" size={20} /> 
-                  View Assessment Summary
-                </button>
-
-                <button
-                  onClick={handleRestart}
-                  className="mt-2 w-full flex items-center justify-center gap-3 px-6 py-5 bg-[#1C1C1E] text-white rounded-xl hover:bg-[#2C2C2E] transition-all duration-300 font-medium text-lg shadow-luxury hover-lift"
-                >
-                  <RotateCcw size={18} /> Start New Assessment
-                </button>
-
-                <SummaryModal 
-                  isOpen={isSummaryOpen}
-                  onClose={() => setIsSummaryOpen(false)}
-                  pathItems={getPathSummary()}
-                  outcome={currentNode.text}
-                  emailTemplate={currentNode.emailTemplate}
-                  status={isLackingCapacity ? 'incapacity' : 'capacity'}
-                />
-              </>
-            )}
-          </div>
-
-        </div>
-
-        {/* Capacity Status Indicator */}
-        {shouldShowStatus && (
-          <div className={cn(
-            "w-full px-6 py-3 text-sm font-medium flex items-center justify-center gap-2 transition-colors duration-300 border-t tracking-wide",
-            isLackingCapacity 
-              ? "bg-[#9B2C2C]/5 text-[#9B2C2C] border-[#9B2C2C]/10" 
-              : "bg-[#2D6A4F]/5 text-[#2D6A4F] border-[#2D6A4F]/10"
-          )}>
-            {isLackingCapacity ? (
-              <>
-                <AlertCircle size={16} />
-                <span>Current Status: Client Lacks Capacity (Best Interests Framework)</span>
-              </>
-            ) : (
-               <>
-                <Info size={16} />
-                <span>Current Status: Presumption of Capacity Applies</span>
-              </>
-            )}
-          </div>
-        )}
-
-        {/* Progress / Footer */}
-        <div className="bg-[#FAF8F5] px-6 py-4 border-t border-[#C9A962]/10 flex md:grid md:grid-cols-3 justify-between md:justify-normal items-center gap-4 text-sm text-[#8E8E93]">
-          <div className="md:justify-self-start tracking-wide">
-            Step {history.length + 1}
-          </div>
-          
-          <div className="justify-self-center font-display text-[#3A3A3C] order-first md:order-none hidden md:block tracking-wide">
-            Mental Capacity Act (2005)
-          </div>
-
-          <div className="flex items-center gap-4 md:justify-self-end">
+          {/* Footer */}
+          <div className="bg-slate-50 px-6 py-3 border-t border-slate-100 flex justify-between items-center text-sm text-slate-500 rounded-b-lg">
+            <span>Step {history.length + 1}</span>
+            <span className="hidden md:inline">Mental Capacity Act (2005)</span>
             <a 
               href="/MCA%20Decision%20Making%20Pathway.pdf"
               download
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-[#B8963E] transition-colors duration-300 tracking-wide"
-              title="Download PDF Version"
+              className="flex items-center gap-1.5 hover:text-slate-700 transition-colors"
             >
               <Download size={14} />
-              <span className="hidden sm:inline">PDF</span>
+              <span>PDF</span>
             </a>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Copy, Check, Download, FileText, CheckCircle, AlertCircle, Mail } from 'lucide-react';
+import { X, Copy, Check, FileText, CheckCircle, AlertCircle, Mail } from 'lucide-react';
 
 interface PathItem {
   question: string;
@@ -19,7 +19,6 @@ interface SummaryModalProps {
 export default function SummaryModal({ isOpen, onClose, pathItems, outcome, emailTemplate, status }: SummaryModalProps) {
   const [copied, setCopied] = useState(false);
 
-  // Prevent scrolling when modal is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -51,41 +50,39 @@ export default function SummaryModal({ isOpen, onClose, pathItems, outcome, emai
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1C1C1E]/60 backdrop-blur-sm animate-fade-up">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
       <div 
-        className="bg-white w-full max-w-2xl rounded-2xl shadow-luxury-lg flex flex-col max-h-[90vh] border border-[#C9A962]/10"
+        className="bg-white w-full max-w-2xl rounded-lg shadow-xl flex flex-col max-h-[90vh] border border-slate-200"
         role="dialog"
         aria-modal="true"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-8 py-5 border-b border-[#C9A962]/10">
-          <div className="flex items-center gap-3 text-[#1C1C1E]">
-            <div className="p-2 bg-[#C9A962]/10 rounded-lg">
-              <FileText className="text-[#B8963E]" size={20} />
-            </div>
-            <h2 className="font-display text-xl tracking-wide">Assessment Summary</h2>
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200">
+          <div className="flex items-center gap-3">
+            <FileText className="text-blue-600" size={20} />
+            <h2 className="font-semibold text-lg text-slate-900">Assessment Summary</h2>
           </div>
           <button 
             onClick={onClose}
-            className="text-[#8E8E93] hover:text-[#1C1C1E] hover:bg-[#FAF8F5] p-2 rounded-lg transition-colors duration-300"
+            className="text-slate-400 hover:text-slate-600 hover:bg-slate-100 p-2 rounded-md transition-colors"
             aria-label="Close summary"
           >
-            <X size={20} />
+            <X size={18} />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-8 overflow-y-auto flex-1 custom-scrollbar">
-          <div className="space-y-8">
+        <div className="p-6 overflow-y-auto flex-1 custom-scrollbar">
+          <div className="space-y-6">
             
             {/* Status Banner */}
             {status && (
-               <div className={`px-5 py-4 rounded-xl flex items-center gap-3 text-sm font-medium tracking-wide border ${
+               <div className={`px-4 py-3 rounded-lg flex items-center gap-3 text-sm font-medium border ${
                  status === 'capacity' 
-                   ? 'bg-[#2D6A4F]/5 text-[#2D6A4F] border-[#2D6A4F]/10' 
-                   : 'bg-[#9B2C2C]/5 text-[#9B2C2C] border-[#9B2C2C]/10'
+                   ? 'bg-emerald-50 text-emerald-700 border-emerald-200' 
+                   : 'bg-red-50 text-red-700 border-red-200'
                }`}>
-                 {status === 'capacity' ? <CheckCircle size={18} /> : <AlertCircle size={18} />}
+                 {status === 'capacity' ? <CheckCircle size={16} /> : <AlertCircle size={16} />}
                  {status === 'capacity' 
                    ? 'Current Status: Presumption of Capacity Applies' 
                    : 'Current Status: Client Lacks Capacity (Best Interests Framework)'
@@ -94,35 +91,35 @@ export default function SummaryModal({ isOpen, onClose, pathItems, outcome, emai
             )}
 
             <div>
-              <h3 className="text-xs font-medium text-[#8E8E93] uppercase tracking-[0.15em] mb-4">
+              <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
                 Established Facts
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 {pathItems.map((item, idx) => (
-                  <li key={idx} className="flex gap-3 text-[#3A3A3C] leading-relaxed bg-[#FAF8F5] p-4 rounded-xl border border-[#C9A962]/10 text-sm">
-                    <CheckCircle className="text-[#2D6A4F] shrink-0 mt-0.5" size={16} />
+                  <li key={idx} className="flex gap-3 text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-200 text-sm">
+                    <CheckCircle className="text-blue-500 shrink-0 mt-0.5" size={14} />
                     <span>{item.statement || `${item.question} (${item.answer})`}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="bg-luxury-gradient text-white p-6 rounded-xl space-y-4">
+            <div className="bg-slate-900 text-white p-5 rounded-lg space-y-4">
               <div>
-                <h3 className="text-xs font-medium text-[#8E8E93] uppercase tracking-[0.15em] mb-2">
+                <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
                   Final Outcome
                 </h3>
-                <p className="font-display text-xl leading-snug tracking-wide">
+                <p className="font-semibold text-base leading-snug">
                   {outcome}
                 </p>
               </div>
               
               {emailTemplate && (
-                <div className="pt-4 border-t border-white/10">
-                   <h3 className="text-xs font-medium text-[#8E8E93] uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
+                <div className="pt-4 border-t border-slate-700">
+                   <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
                      <Mail size={12} /> Suggested Action / Communication
                    </h3>
-                   <div className="text-[#C9C9C9] text-sm leading-relaxed whitespace-pre-wrap">
+                   <div className="text-slate-300 text-sm leading-relaxed whitespace-pre-wrap">
                      {emailTemplate}
                    </div>
                 </div>
@@ -132,19 +129,19 @@ export default function SummaryModal({ isOpen, onClose, pathItems, outcome, emai
         </div>
 
         {/* Footer */}
-        <div className="p-6 border-t border-[#C9A962]/10 bg-[#FAF8F5] rounded-b-2xl flex justify-end gap-4">
+        <div className="px-6 py-4 border-t border-slate-200 bg-slate-50 flex justify-end gap-3 rounded-b-lg">
           <button
             onClick={onClose}
-            className="px-6 py-3 text-[#3A3A3C] font-medium hover:bg-white rounded-xl transition-colors duration-300 tracking-wide"
+            className="px-4 py-2 text-slate-600 font-medium hover:bg-white hover:text-slate-900 rounded-md transition-colors"
           >
             Close
           </button>
           <button
             onClick={handleCopy}
-            className="flex items-center gap-2 px-6 py-3 bg-[#1C1C1E] text-white font-medium rounded-xl hover:bg-[#2C2C2E] transition-all duration-300 shadow-luxury hover-lift tracking-wide"
+            className="flex items-center gap-2 px-5 py-2 bg-slate-900 text-white font-medium rounded-md hover:bg-slate-800 transition-colors"
           >
-            {copied ? <Check size={18} /> : <Copy size={18} />}
-            {copied ? 'Copied to Clipboard' : 'Copy Summary'}
+            {copied ? <Check size={16} /> : <Copy size={16} />}
+            {copied ? 'Copied' : 'Copy Summary'}
           </button>
         </div>
       </div>
