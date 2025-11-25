@@ -122,19 +122,24 @@ export default function DecisionTree() {
         </nav>
 
         <div className="max-w-6xl mx-auto px-6">
-          {/* Hero */}
-          <div className="py-16 md:py-24 lg:py-32 animate-fadeIn">
-            <div className="max-w-3xl">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 py-16 md:py-24 lg:py-32">
+            {/* Left: Main content */}
+            <div className="animate-fadeIn">
               <p className="text-sm font-medium text-blue-600 tracking-wide uppercase mb-4">
                 Decision Making Framework
               </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight tracking-tight mb-6">
-                Mental Capacity Act<br />
+                <span className="whitespace-nowrap">Mental Capacity Act</span><br />
                 <span className="text-slate-400">Pathway</span>
               </h1>
-              <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-10 max-w-2xl">
-                A structured framework supporting professionals in applying the core principles of the Mental Capacity Act within everyday practice—ensuring reflective, lawful, and ethically robust decision-making.
-              </p>
+              <div className="text-lg md:text-xl text-slate-600 leading-relaxed mb-10 max-w-2xl space-y-3">
+                <p>
+                  A structured framework to guide professionals in applying the core principles of the Mental Capacity Act within everyday practice, supporting reflective, lawful and ethically robust decision making.
+                </p>
+                <p className="text-slate-900 font-semibold">
+                  This tool is designed to be used with a specific client and specific decision in mind.
+                </p>
+              </div>
               <button
                 onClick={handleStartAssessment}
                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-slate-900 text-white text-base font-medium rounded-lg hover:bg-slate-800 transition-colors"
@@ -143,30 +148,30 @@ export default function DecisionTree() {
                 <ArrowRight size={18} />
               </button>
             </div>
-          </div>
 
-          {/* Info cards */}
-          <div className="grid md:grid-cols-2 gap-6 pb-16 md:pb-24 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-            <div className="border border-amber-200 bg-amber-50 rounded-lg p-6">
-              <div className="flex items-start gap-4">
-                <AlertTriangle className="text-amber-600 shrink-0 mt-0.5" size={20} />
-                <div>
-                  <h3 className="font-semibold text-slate-900 mb-2">Important Notice</h3>
-                  <p className="text-sm text-slate-700 leading-relaxed">
-                    This tool is intended to complement, not replace, professional judgement. It must not be used as a substitute for legal advice or formal legal procedures. Where there is uncertainty, complexity, or potential disagreement, professionals should seek independent legal advice.
-                  </p>
+            {/* Right: Info cards */}
+            <div className="flex flex-col justify-end space-y-6 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
+              <div className="border border-amber-200 bg-amber-50 rounded-lg p-6">
+                <div className="flex items-start gap-4">
+                  <AlertTriangle className="text-amber-600 shrink-0 mt-0.5" size={20} />
+                  <div>
+                    <h3 className="font-semibold text-slate-900 mb-2">Disclaimer</h3>
+                    <p className="text-sm text-slate-700 leading-relaxed">
+                      This tool does not constitute legal advice and must not be used as a substitute for professional legal guidance. Where there is any uncertainty, complexity or disagreement, independent legal advice must be sought.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="border border-red-200 bg-red-50 rounded-lg p-6">
-              <div className="flex items-start gap-4">
-                <ShieldAlert className="text-red-600 shrink-0 mt-0.5" size={20} />
-                <div>
-                  <h3 className="font-semibold text-slate-900 mb-2">Safeguarding Warning</h3>
-                  <p className="text-sm text-slate-700 leading-relaxed">
-                    Any concerns regarding risk of harm, abuse, neglect, or exploitation must be acted upon immediately and managed in accordance with relevant safeguarding legislation, statutory guidance, and local procedures.
-                  </p>
+              <div className="border border-red-200 bg-red-50 rounded-lg p-6">
+                <div className="flex items-start gap-4">
+                  <ShieldAlert className="text-red-600 shrink-0 mt-0.5" size={20} />
+                  <div>
+                    <h3 className="font-semibold text-slate-900 mb-2">Safeguarding Warning</h3>
+                    <p className="text-sm text-slate-700 leading-relaxed">
+                      Do not delay. Any serious concerns about risk of harm, abuse, neglect or exploitation must be acted upon immediately in accordance with safeguarding legislation and frameworks.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
