@@ -169,7 +169,7 @@ export default function DecisionTree() {
                     onClick={handleStartAssessment}
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 active:bg-blue-800 transition-all shadow-lg shadow-blue-200 font-semibold text-lg group"
                   >
-                    Begin Assessment
+                    Start Assessment
                     <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
                   </button>
                   
