@@ -25,8 +25,18 @@
       "text": "Are there any concerns about the client's ability to understand, retain, weigh, use or communicate information to make their own decision?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q3", "statement": "There are concerns about the client's ability to understand, retain, weigh, use, or communicate information relevant to the decision." },
+        { "label": "Yes", "nextNodeId": "q2b", "statement": "There are concerns about the client's ability to understand, retain, weigh, use, or communicate information relevant to the decision." },
         { "label": "No", "nextNodeId": "r-capacity-presumed", "statement": "There are no concerns about the client's ability to understand, retain, weigh, use, or communicate information relevant to the decision." }
+      ]
+    },
+    "q2b": {
+      "id": "q2b",
+      "text": "Can the specific decision the client is struggling with be clearly defined?",
+      "details": "The Mental Capacity Act requires assessments to be decision-specific. Examples include but are not limited to:\n\n• Spending and financial decisions\n\n• Care arrangements and support\n\n• Where to live\n\n• Social media and internet use\n\n• Contact with others\n\n• Sexual relationships and consent\n\n• Medical treatment and healthcare decisions\n\n• Property and affairs management\n\n• Day-to-day activities and routines\n\n• Education and training\n\n• Legal matters and court proceedings\n\n• End of life decisions",
+      "type": "question",
+      "options": [
+        { "label": "Yes", "nextNodeId": "q3", "statement": "The specific decision the client is struggling with has been clearly defined." },
+        { "label": "No", "nextNodeId": "r-define-decision", "statement": "The specific decision the client is struggling with has not yet been clearly defined." }
       ]
     },
     "q3": {
@@ -50,11 +60,11 @@
     },
     "q4": {
       "id": "q4",
-      "text": "Has the client undergone a formal capacity assessment?",
+      "text": "Has the client's capacity to make this specific decision been assessed?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q5", "statement": "A formal capacity assessment has been completed for this specific decision." },
-        { "label": "No", "nextNodeId": "r-assessment-needed", "statement": "A formal capacity assessment has not yet been completed." }
+        { "label": "Yes", "nextNodeId": "q5", "statement": "The client's capacity to make this specific decision has been assessed." },
+        { "label": "No", "nextNodeId": "r-assessment-needed", "statement": "The client's capacity to make this specific decision has not yet been assessed." }
       ]
     },
     "q5": {
@@ -62,8 +72,8 @@
       "text": "Was the client found to be lacking capacity to make the decision?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q10", "statement": "The formal assessment determined that the client lacks capacity to make this specific decision." },
-        { "label": "No", "nextNodeId": "r-capacity-confirmed", "statement": "The formal assessment determined that the client has the capacity to make this specific decision." }
+        { "label": "Yes", "nextNodeId": "q10", "statement": "The capacity assessment determined that the client lacks capacity to make this specific decision." },
+        { "label": "No", "nextNodeId": "r-capacity-confirmed", "statement": "The capacity assessment determined that the client has the capacity to make this specific decision." }
       ]
     },
     "q6": {
@@ -172,21 +182,29 @@
       "status": "incapacity",
       "emailTemplate": "The client has not yet received all practicable support to make the decision. Section 1 of the Mental Capacity Act (2005) requires that a person is not treated as unable to make a decision unless all practicable steps to help them have been taken without success.\n\nRequired Action: Implement a programme of capacity-building support (e.g., accessible information, communication aids, speech and language therapy) to help the client understand, retain, weigh, and use the relevant information."
     },
-    "r-assessment-needed": {
-      "id": "r-assessment-needed",
-      "text": "Action Required: Formal Assessment",
-      "details": "Section 1 of the Mental Capacity Act (2005) states that a person must be assumed to have capacity unless it is established that they lack capacity.\n\n<b>This client requires a decision specific formal capacity assessment.</b>",
+    "r-define-decision": {
+      "id": "r-define-decision",
+      "text": "Action Required: Define the Specific Decision",
+      "details": "The Mental Capacity Act requires assessments to be decision-specific. Before proceeding with a capacity assessment, the specific decision must be clearly identified and understood.\n\n<b>Gather information to support understanding of which decision(s) need to be made.</b>\n\nConsider:\n\n• Which specific decision or decisions need to be made?\n\n• If there are multiple decisions, they must be considered separately\n\n• What are the options available to the client?\n\n• What are the consequences of each option?\n\n• What information does the client need to understand?\n\n• When does this decision need to be made?\n\n• Who else is involved or affected?",
       "type": "result",
       "status": "incapacity",
-      "emailTemplate": "There is evidence suggesting the client may lack capacity due to an impairment or disturbance of the mind or brain, but a formal assessment has not yet been completed.\n\nRequired Action: Arrange for a decision-specific formal capacity assessment to be undertaken to determine if the client lacks capacity to make this specific decision."
+      "emailTemplate": "The specific decision the client is struggling with has not yet been clearly defined. The Mental Capacity Act requires assessments to be decision-specific.\n\nRequired Action: Gather information to clearly define the specific decision, including what decision needs to be made, what options are available, what the consequences are, and what information the client needs to understand. Once the decision is clearly defined, the assessment can proceed."
+    },
+    "r-assessment-needed": {
+      "id": "r-assessment-needed",
+      "text": "Action Required: Capacity Assessment",
+      "details": "Section 1 of the Mental Capacity Act (2005) states that a person must be assumed to have capacity unless it is established that they lack capacity.\n\n<b>This client requires a decision specific capacity assessment.</b>",
+      "type": "result",
+      "status": "incapacity",
+      "emailTemplate": "There is evidence suggesting the client may lack capacity due to an impairment or disturbance of the mind or brain, but a capacity assessment has not yet been completed.\n\nRequired Action: Arrange for a decision-specific capacity assessment to be undertaken to determine if the client lacks capacity to make this specific decision."
     },
     "r-capacity-confirmed": {
       "id": "r-capacity-confirmed",
       "text": "Outcome: Capacity Confirmed",
-      "details": "The formal capacity assessment has determined that the client has the necessary capacity to make this specific decision.\n\n<b>Guidance for practice:</b>\n\n• The client has the legal right to make this decision, even if professionals or family members disagree or consider it unwise\n• If there are significant risks, consider if a referral for other support or safeguarding is appropriate, independent of their capacity status\n• If you suspect the client is being pressured, the MCA may not apply, but other legal frameworks might. Seek legal advice if coercion is suspected",
+      "details": "The capacity assessment has determined that the client has the necessary capacity to make this specific decision.\n\n<b>Guidance for practice:</b>\n\n• The client has the legal right to make this decision, even if professionals or family members disagree or consider it unwise\n• If there are significant risks, consider if a referral for other support or safeguarding is appropriate, independent of their capacity status\n• If you suspect the client is being pressured, the MCA may not apply, but other legal frameworks might. Seek legal advice if coercion is suspected",
       "type": "result",
       "status": "capacity",
-      "emailTemplate": "The formal capacity assessment has confirmed that the client has the necessary capacity to make this specific decision. The client has the legal right to make this decision, even if it is considered unwise by others.\n\nNote: Ensure any risks are managed through appropriate support or safeguarding if applicable, independent of their capacity status."
+      "emailTemplate": "The capacity assessment has confirmed that the client has the necessary capacity to make this specific decision. The client has the legal right to make this decision, even if it is considered unwise by others.\n\nNote: Ensure any risks are managed through appropriate support or safeguarding if applicable, independent of their capacity status."
     },
     "r-delay-decision": {
       "id": "r-delay-decision",
