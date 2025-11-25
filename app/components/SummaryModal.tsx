@@ -51,21 +51,23 @@ export default function SummaryModal({ isOpen, onClose, pathItems, outcome, emai
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1C1C1E]/60 backdrop-blur-sm animate-fade-up">
       <div 
-        className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200"
+        className="bg-white w-full max-w-2xl rounded-2xl shadow-luxury-lg flex flex-col max-h-[90vh] border border-[#C9A962]/10"
         role="dialog"
         aria-modal="true"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
-          <div className="flex items-center gap-2 text-slate-900">
-            <FileText className="text-blue-600" size={24} />
-            <h2 className="font-bold text-lg">Assessment Summary</h2>
+        <div className="flex items-center justify-between px-8 py-5 border-b border-[#C9A962]/10">
+          <div className="flex items-center gap-3 text-[#1C1C1E]">
+            <div className="p-2 bg-[#C9A962]/10 rounded-lg">
+              <FileText className="text-[#B8963E]" size={20} />
+            </div>
+            <h2 className="font-display text-xl tracking-wide">Assessment Summary</h2>
           </div>
           <button 
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 hover:bg-slate-100 p-2 rounded-full transition-colors"
+            className="text-[#8E8E93] hover:text-[#1C1C1E] hover:bg-[#FAF8F5] p-2 rounded-lg transition-colors duration-300"
             aria-label="Close summary"
           >
             <X size={20} />
@@ -73,15 +75,15 @@ export default function SummaryModal({ isOpen, onClose, pathItems, outcome, emai
         </div>
 
         {/* Content */}
-        <div className="p-6 overflow-y-auto flex-1 custom-scrollbar">
-          <div className="space-y-6">
+        <div className="p-8 overflow-y-auto flex-1 custom-scrollbar">
+          <div className="space-y-8">
             
             {/* Status Banner */}
             {status && (
-               <div className={`px-4 py-3 rounded-lg flex items-center gap-3 text-sm font-medium border ${
+               <div className={`px-5 py-4 rounded-xl flex items-center gap-3 text-sm font-medium tracking-wide border ${
                  status === 'capacity' 
-                   ? 'bg-green-50 text-green-800 border-green-100' 
-                   : 'bg-red-50 text-red-800 border-red-100'
+                   ? 'bg-[#2D6A4F]/5 text-[#2D6A4F] border-[#2D6A4F]/10' 
+                   : 'bg-[#9B2C2C]/5 text-[#9B2C2C] border-[#9B2C2C]/10'
                }`}>
                  {status === 'capacity' ? <CheckCircle size={18} /> : <AlertCircle size={18} />}
                  {status === 'capacity' 
@@ -92,35 +94,35 @@ export default function SummaryModal({ isOpen, onClose, pathItems, outcome, emai
             )}
 
             <div>
-              <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3">
+              <h3 className="text-xs font-medium text-[#8E8E93] uppercase tracking-[0.15em] mb-4">
                 Established Facts
               </h3>
               <ul className="space-y-3">
                 {pathItems.map((item, idx) => (
-                  <li key={idx} className="flex gap-3 text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-100 text-sm">
-                    <CheckCircle className="text-blue-500 shrink-0 mt-0.5" size={16} />
+                  <li key={idx} className="flex gap-3 text-[#3A3A3C] leading-relaxed bg-[#FAF8F5] p-4 rounded-xl border border-[#C9A962]/10 text-sm">
+                    <CheckCircle className="text-[#2D6A4F] shrink-0 mt-0.5" size={16} />
                     <span>{item.statement || `${item.question} (${item.answer})`}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="bg-slate-900 text-white p-5 rounded-xl space-y-3">
+            <div className="bg-luxury-gradient text-white p-6 rounded-xl space-y-4">
               <div>
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">
+                <h3 className="text-xs font-medium text-[#8E8E93] uppercase tracking-[0.15em] mb-2">
                   Final Outcome
                 </h3>
-                <p className="font-bold text-lg leading-snug">
+                <p className="font-display text-xl leading-snug tracking-wide">
                   {outcome}
                 </p>
               </div>
               
               {emailTemplate && (
-                <div className="pt-3 border-t border-slate-700/50">
-                   <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <div className="pt-4 border-t border-white/10">
+                   <h3 className="text-xs font-medium text-[#8E8E93] uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
                      <Mail size={12} /> Suggested Action / Communication
                    </h3>
-                   <div className="text-slate-300 text-sm leading-relaxed whitespace-pre-wrap font-medium">
+                   <div className="text-[#C9C9C9] text-sm leading-relaxed whitespace-pre-wrap">
                      {emailTemplate}
                    </div>
                 </div>
@@ -130,16 +132,16 @@ export default function SummaryModal({ isOpen, onClose, pathItems, outcome, emai
         </div>
 
         {/* Footer */}
-        <div className="p-6 border-t border-slate-100 bg-slate-50/50 rounded-b-2xl flex justify-end gap-3">
+        <div className="p-6 border-t border-[#C9A962]/10 bg-[#FAF8F5] rounded-b-2xl flex justify-end gap-4">
           <button
             onClick={onClose}
-            className="px-4 py-2.5 text-slate-600 font-medium hover:bg-slate-100 rounded-xl transition-colors"
+            className="px-6 py-3 text-[#3A3A3C] font-medium hover:bg-white rounded-xl transition-colors duration-300 tracking-wide"
           >
             Close
           </button>
           <button
             onClick={handleCopy}
-            className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 active:bg-blue-800 transition-all shadow-lg shadow-blue-200"
+            className="flex items-center gap-2 px-6 py-3 bg-[#1C1C1E] text-white font-medium rounded-xl hover:bg-[#2C2C2E] transition-all duration-300 shadow-luxury hover-lift tracking-wide"
           >
             {copied ? <Check size={18} /> : <Copy size={18} />}
             {copied ? 'Copied to Clipboard' : 'Copy Summary'}

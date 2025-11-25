@@ -1,15 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import { StructuredData } from "./components/StructuredData";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
@@ -131,7 +132,7 @@ export default function RootLayout({
   return (
     <html lang="en-GB">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`} 
+        className={`${cormorant.variable} ${inter.variable} antialiased`} 
       >
         <StructuredData />
         {children}
