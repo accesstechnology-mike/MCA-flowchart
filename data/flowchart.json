@@ -68,11 +68,11 @@
     },
     "q6": {
       "id": "q6",
-      "text": "Has a Best Interest Meeting been held?",
+      "text": "Has a best interest decision been made that takes into consideration the views of those concerned for the person's care and welfare?",
       "type": "question",
       "options": [
-        { "label": "Yes", "nextNodeId": "q8", "statement": "A Best Interest Meeting has been held involving relevant parties." },
-        { "label": "No", "nextNodeId": "r-hold-meeting", "statement": "A Best Interest Meeting has not yet been held." }
+        { "label": "Yes", "nextNodeId": "q8", "statement": "A best interest decision has been made that takes into consideration the views of those concerned for the person's care and welfare." },
+        { "label": "No", "nextNodeId": "r-hold-meeting", "statement": "A best interest decision has not yet been made that takes into consideration the views of those concerned for the person's care and welfare." }
       ]
     },
     "q7": {
@@ -198,11 +198,11 @@
     },
     "r-hold-meeting": {
       "id": "r-hold-meeting",
-      "text": "Action: Hold Best Interest Meeting",
-      "details": "Section 1 of the Mental Capacity Act (2005) states that any act or decision made on behalf of a person who lacks capacity must be done, or made, in their best interests.\n\n<b>A Best Interest Meeting should be held to ascertain the most appropriate next steps.</b>\n\nInclude the views of all people concerned with the client's care and welfare:\n\n• Family and friends\n• Professionals involved in care\n• Independent Mental Capacity Advocate (IMCA) if applicable\n• Court Appointed Deputy (Property & Affairs or Health & Welfare)\n• Anyone named by the person to be consulted",
+      "text": "Action: Make Best Interest Decision",
+      "details": "Section 1 of the Mental Capacity Act (2005) states that any act or decision made on behalf of a person who lacks capacity must be done, or made, in their best interests.\n\n<b>A best interest decision must be made that takes into consideration the views of those concerned for the person's care and welfare.</b>\n\nWhile not every situation requires a formal Best Interest Meeting, many will benefit from one. Particularly where:\n\n• The decision is complex or has significant consequences\n\n• There are multiple people involved or conflicting views\n\n• The decision is contentious or there is disagreement\n\n• The person's circumstances are changing\n\n• There are safeguarding concerns\n\nFor simpler or routine decisions, consultation may be achieved through other means such as phone calls, written correspondence, or informal discussions, provided all relevant views are sought and considered.\n\n<b>Regardless of the method used, ensure you consult with and include the views of:</b>\n\n• Family and friends\n\n• Professionals involved in care\n\n• Independent Mental Capacity Advocate (IMCA) if applicable\n\n• Court Appointed Deputy (Property & Affairs or Health & Welfare)\n\n• Anyone named by the person to be consulted",
       "type": "result",
       "status": "incapacity",
-      "emailTemplate": "The client lacks capacity for this decision, and a Best Interest decision is required. Section 1 of the MCA states that any decision made on behalf of a person who lacks capacity must be in their best interests.\n\nRequired Action: Convene a Best Interest Meeting involving all relevant parties (family, professionals, IMCA/Deputy if applicable) to determine the appropriate course of action."
+      "emailTemplate": "The client lacks capacity for this decision, and a best interest decision is required. Section 1 of the MCA states that any decision made on behalf of a person who lacks capacity must be in their best interests.\n\nRequired Action: Ensure a best interest decision is made that takes into consideration the views of all those concerned for the person's care and welfare. While not every situation requires a formal Best Interest Meeting, many will benefit from one, particularly for complex, contentious, or significant decisions. For simpler decisions, consultation may be achieved through other means, provided all relevant views are sought and considered."
     },
     "r-seek-views": {
       "id": "r-seek-views",
@@ -231,7 +231,7 @@
     "r-consider-alternatives": {
       "id": "r-consider-alternatives",
       "text": "Action: Evaluate Whether Interference is Justified",
-      "details": "The Mental Capacity Act Code of Practice (2013) makes clear that a proportionate response uses the least intrusive type and minimum amount of interference to achieve a specific outcome in the best interests of the person who lacks capacity.\n\nRestrictions and interference should be a last resort, not a first response.\n\n<b>The proposed Best Interest decision/act should be reconsidered:</b>\n\n<b>• Evaluate whether the interference of the proposed decision/act is justified\n\n• Ensure the approach is well measured and tailored to the individual, not a blanket approach\n\n• Consider whether a less restrictive or less intrusive approach could achieve the same purpose\n\n• If alternatives are unsuitable, there must be clear evidence and justification documented</b>",
+      "details": "The Mental Capacity Act Code of Practice (2007) makes clear that a proportionate response uses the least intrusive type and minimum amount of interference to achieve a specific outcome in the best interests of the person who lacks capacity.\n\nRestrictions and interference should be a last resort, not a first response.\n\n<b>The proposed Best Interest decision/act should be reconsidered:</b>\n\n<b>• Evaluate whether the interference of the proposed decision/act is justified\n\n• Ensure the approach is well measured and tailored to the individual, not a blanket approach\n\n• Consider whether a less restrictive or less intrusive approach could achieve the same purpose\n\n• If alternatives are unsuitable, there must be clear evidence and justification documented</b>",
       "type": "result",
       "status": "incapacity",
       "emailTemplate": "The proposed decision/act may not be proportionate to the risks. The MCA Code of Practice requires that any intervention uses the least intrusive method to achieve the best interest outcome.\n\nRequired Action: Re-evaluate whether the level of interference is justified. Ensure the decision is tailored to the individual's specific needs and is not a blanket approach. Explore less intrusive alternatives."
@@ -239,7 +239,7 @@
     "r-schedule-review": {
       "id": "r-schedule-review",
       "text": "Action: Schedule Review",
-      "details": "The Mental Capacity Act Code of practice (2013) makes clear that decisions are kept under regular review and reconsidered where circumstances change, where capacity may fluctuate, or where new information becomes available, to ensure the decision remains appropriate, proportionate and in the Client's best interests.\n\n• All decisions, support and actions taken in the client's best interests must be routinely reviewed\n• Schedule dates in the diary to ensure this happens",
+      "details": "The Mental Capacity Act Code of practice (2007) makes clear that decisions are kept under regular review and reconsidered where circumstances change, where capacity may fluctuate, or where new information becomes available, to ensure the decision remains appropriate, proportionate and in the Client's best interests.\n\n• All decisions, support and actions taken in the client's best interests must be routinely reviewed\n• Schedule dates in the diary to ensure this happens",
       "type": "result",
       "status": "incapacity",
       "emailTemplate": "The Best Interest decision-making process is nearing completion, but a review date has not been set. Decisions made under the MCA must be kept under regular review.\n\nRequired Action: Schedule a specific date to review the decision to ensure it remains appropriate, proportionate, and in the client's best interests."

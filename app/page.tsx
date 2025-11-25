@@ -336,10 +336,68 @@ export default function DecisionTree() {
                            <span>Guidance</span>
                         </div>
                       )}
-                      {currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' || currentNode.id === 'r-documentation-needed' ? (
+                      {currentNode.id === 'r-hold-meeting' && currentNode.details ? (
+                        <>
+                          {(() => {
+                            const sections = currentNode.details.split('\n\n');
+                            const elements: React.ReactNode[] = [];
+                            let currentBullets: string[] = [];
+                            
+                            sections.forEach((section, idx) => {
+                              const trimmed = section.trim();
+                              if (trimmed.startsWith('•') || trimmed.includes('\n•')) {
+                                // Collect bullet lines
+                                const bulletLines = trimmed.split('\n').filter(l => l.trim().startsWith('•'));
+                                currentBullets.push(...bulletLines);
+                              } else if (trimmed.length > 0) {
+                                // Render any collected bullets first
+                                if (currentBullets.length > 0) {
+                                  elements.push(
+                                    <div key={`bullets-${idx}`} className="space-y-3 mb-4">
+                                      {currentBullets.map((line, bIdx) => {
+                                        let text = line.replace(/^.*•\s*/, '').trim();
+                                        text = text.replace(/<\/?b>/g, '').trim();
+                                        return (
+                                          <div key={bIdx} className="flex items-start gap-3">
+                                            <CheckCircle className="text-green-500 shrink-0 mt-0.5" size={20} />
+                                            <span>{text}</span>
+                                          </div>
+                                        );
+                                      })}
+                                    </div>
+                                  );
+                                  currentBullets = [];
+                                }
+                                // Render the text section
+                                elements.push(<p key={idx} dangerouslySetInnerHTML={{ __html: trimmed }} />);
+                              }
+                            });
+                            
+                            // Render any remaining bullets
+                            if (currentBullets.length > 0) {
+                              elements.push(
+                                <div key="bullets-final" className="space-y-3">
+                                  {currentBullets.map((line, bIdx) => {
+                                    let text = line.replace(/^.*•\s*/, '').trim();
+                                    text = text.replace(/<\/?b>/g, '').trim();
+                                    return (
+                                      <div key={bIdx} className="flex items-start gap-3">
+                                        <CheckCircle className="text-green-500 shrink-0 mt-0.5" size={20} />
+                                        <span>{text}</span>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              );
+                            }
+                            
+                            return elements;
+                          })()}
+                        </>
+                      ) : currentNode.id === 'q3' || currentNode.id === 'r-unwise-decision' || currentNode.id === 'q8b' || currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-schedule-review' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' || currentNode.id === 'r-documentation-needed' ? (
                         <>
                           {currentNode.details.split('\n\n').filter((para, idx) => {
-                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' || currentNode.id === 'r-documentation-needed') {
+                            if (currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' || currentNode.id === 'r-documentation-needed') {
                               const paraText = para.trim();
                               return !paraText.includes('•') && paraText.length > 0;
                             } else {
@@ -350,7 +408,7 @@ export default function DecisionTree() {
                              para.trim() && <p key={idx} dangerouslySetInnerHTML={{ __html: para }} />
                           ))}
                           
-                          {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-hold-meeting' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' || currentNode.id === 'r-documentation-needed') && currentNode.details.includes('<b>') && (
+                          {(currentNode.id === 'r-consider-alternatives' || currentNode.id === 'r-least-restrictive-needed' || currentNode.id === 'r-delay-decision' || currentNode.id === 'r-process-complete' || currentNode.id === 'r-capacity-confirmed' || currentNode.id === 'r-seek-views' || currentNode.id === 'r-dol-warning' || currentNode.id === 'q9' || currentNode.id === 'r-documentation-needed') && currentNode.details.includes('<b>') && (
                              (() => {
                                const boldBlocks = currentNode.details.split('\n\n').filter(p => p.includes('<b>'));
                                if (boldBlocks.length > 0) {
