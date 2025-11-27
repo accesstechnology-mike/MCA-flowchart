@@ -122,7 +122,7 @@ export default function DecisionTree() {
         </nav>
 
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 py-16 md:py-24 lg:py-32">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 pt-16 pb-8 md:pt-24 md:pb-12 lg:pt-32 lg:pb-16">
             {/* Left: Main content */}
             <div className="animate-fadeIn">
               <p className="text-sm font-medium text-blue-600 tracking-wide uppercase mb-4">
@@ -176,9 +176,32 @@ export default function DecisionTree() {
               </div>
             </div>
           </div>
+        </div>
 
+        {/* About Banner - Full Width */}
+        <div className="w-full bg-blue-50/50 border-y border-blue-100 py-12 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="flex flex-col sm:flex-row gap-5 sm:gap-8 items-start sm:items-center">
+              <img 
+                src="/android-chrome-192x192.png" 
+                alt="access: technology" 
+                className="h-12 w-12 object-contain shrink-0 opacity-90"
+              />
+              <div className="text-sm text-slate-600 leading-relaxed space-y-3">
+                <p>
+                  <span className="font-semibold text-slate-800">access: technology</span> is a highly specialist Assistive Technology consultancy service supporting clients across the UK to enhance their quality of life. This framework was developed to support our own team of AT Consultants and is shared here for case managers, professional colleagues, and those working in the independent or medico-legal sectors.
+                </p>
+                <p>
+                  For more information about this tool, or how we can support your clients with Assistive Technology or online safety, please contact <a href="mailto:domore@accesstechnology.co.uk" className="text-blue-600 hover:text-blue-800 font-medium transition-colors">domore@accesstechnology.co.uk</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-6xl mx-auto px-6">
           {/* Footer */}
-          <div className="border-t border-slate-200 py-6 text-center text-sm text-slate-500">
+          <div className="py-6 text-center text-sm text-slate-500">
             Mental Capacity Act (2005) · <a href="https://accesstechnology.co.uk" target="_blank" rel="noopener noreferrer" className="hover:text-slate-700 transition-colors">access: technology</a>
           </div>
         </div>
@@ -500,8 +523,8 @@ export default function DecisionTree() {
             </div>
           )}
 
-          {/* Footer */}
-          <div className="bg-slate-50 px-6 py-3 border-t border-slate-100 flex justify-between items-center text-sm text-slate-500 rounded-b-lg">
+        {/* Footer */}
+        <div className="bg-slate-50 px-6 py-3 border-t border-slate-100 flex justify-between items-center text-sm text-slate-500 rounded-b-lg">
             <span>Step {history.length + 1}</span>
             <span className="hidden md:inline">Mental Capacity Act (2005)</span>
             <a 
